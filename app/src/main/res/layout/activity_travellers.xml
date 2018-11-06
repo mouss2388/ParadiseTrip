@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:gravity="center_horizontal"
+
+    >
+
+
+    <!--- PASSENGERS AGE -->
+    <LinearLayout
+        android:layout_marginTop="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/linear_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/child_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/arrow_up"/>
+            <TextView
+                android:id="@+id/child"
+                android:text="0 Enfant (jusqu'a 17 ans)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageButton
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/child_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/arrow_down"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/adult_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/arrow_up"
+                />
+            <TextView
+                android:id="@+id/adult"
+                android:text="0 Adulte (18 ans à 64 ans)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageButton
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="6dp"
+                android:id="@+id/adult_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/arrow_down"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_senior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/senior_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/arrow_up"
+                />
+            <TextView
+                android:id="@+id/senior"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Senior (65 ans et plus)"
+                />
+            <ImageButton
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/senior_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/arrow_down"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!--- CLASSES -->
+   <RadioGroup
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+       <RadioButton android:id="@+id/radio_eco_class"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Eco"
+           android:onClick="onRadioButtonClicked"
+           />
+
+       <RadioButton android:id="@+id/radio_premium_class"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Premiumi"
+           android:onClick="onRadioButtonClicked"/>
+
+       <RadioButton android:id="@+id/radio_business_class"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Business"
+           android:onClick="onRadioButtonClicked"/>
+
+       <RadioButton android:id="@+id/radio_first_class"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="1er Classe"
+           android:onClick="onRadioButtonClicked"/>
+   </RadioGroup>
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terminer"/>
+
+
+</LinearLayout>
