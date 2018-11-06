@@ -8,16 +8,32 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private LinearLayout mGallery;
+    private int[] mImgIds;
+    private LayoutInflater mInflater;
+    private HorizontalScrollView horizontalScrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mInflater = LayoutInflater.from(this);
+        initData();
+        initView();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,6 +54,44 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initData()
+    {
+        mImgIds = new int[] { R.drawable.paris, R.drawable.ibiza, R.drawable.new_york, R.drawable.paris, R.drawable.ibiza
+        };
+    }
+
+    private void initView()
+    {
+        mGallery = findViewById(R.id.id_gallery);
+
+        for (int i = 0; i < mImgIds.length; i++)
+        {
+
+            View view = mInflater.inflate(R.layout.activity_gallery_item,
+                    mGallery, false);
+            ImageView img =  view
+                    .findViewById(R.id.id_index_gallery_item_image);
+            img.setImageResource(mImgIds[i]);
+          /*  TextView txt = (TextView) view
+                    .findViewById(R.id.id_index_gallery_item_text);
+            txt.setText("info "+i);*/
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this,
+                            "The favorite list would appear on clicking this icon",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+            mGallery.addView(view);
+
+            mGallery.callOnClick();
+
+
+
+        }
     }
 
     @Override
