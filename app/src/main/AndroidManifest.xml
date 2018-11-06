@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MyTravelsLogout"></activity>
+        <activity android:name=".MyTravelsLogout" />
+        <activity android:name=".RegisterActivity"/>
     </application>
 
 </manifest>
