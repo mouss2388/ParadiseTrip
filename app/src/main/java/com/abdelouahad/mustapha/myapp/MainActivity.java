@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -47,12 +48,45 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+
         drawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                Toast.makeText(MainActivity.this,
+                        "onDrawerOpened",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                Toast.makeText(MainActivity.this,
+                        "onDrawerClosed",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
+
 
     //Tab contenant les images des destinations
     private void initData()
