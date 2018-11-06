@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
 
     private int[] mImgIds;
     private LayoutInflater mInflater;
+    private Boolean login_state= false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this,
                         "onDrawerOpened",
                         Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -80,7 +82,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-
+        //laisse les couleurs d origine
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -165,17 +168,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.my_travels) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.my_account) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.parameters) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.promotions) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.logout) {
 
         }
 
