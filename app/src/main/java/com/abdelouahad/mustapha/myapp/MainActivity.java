@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -20,16 +19,15 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private LinearLayout mGallery;
     private int[] mImgIds;
     private LayoutInflater mInflater;
-    private HorizontalScrollView horizontalScrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
+        //crée la gallerie des destinations tendence
         mInflater = LayoutInflater.from(this);
         initData();
         initView();
@@ -56,6 +54,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    //Tab contenant les images des destinations
     private void initData()
     {
         mImgIds = new int[] { R.drawable.paris, R.drawable.ibiza, R.drawable.new_york, R.drawable.paris, R.drawable.ibiza
@@ -64,19 +63,19 @@ public class MainActivity extends AppCompatActivity
 
     private void initView()
     {
-        mGallery = findViewById(R.id.id_gallery);
+        LinearLayout gallery = findViewById(R.id.id_gallery);
 
-        for (int i = 0; i < mImgIds.length; i++)
-        {
+        for (int mImgId : mImgIds) {
 
             View view = mInflater.inflate(R.layout.activity_gallery_item,
-                    mGallery, false);
-            ImageView img =  view
+                    gallery, false);
+            ImageView img = view
                     .findViewById(R.id.id_index_gallery_item_image);
-            img.setImageResource(mImgIds[i]);
+            img.setImageResource(mImgId);
           /*  TextView txt = (TextView) view
                     .findViewById(R.id.id_index_gallery_item_text);
             txt.setText("info "+i);*/
+            //Detection clic sur image
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,10 +84,9 @@ public class MainActivity extends AppCompatActivity
                             Toast.LENGTH_LONG).show();
                 }
             });
-            mGallery.addView(view);
+            gallery.addView(view);
 
-            mGallery.callOnClick();
-
+            gallery.callOnClick();
 
 
         }
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        //Evenements lors de l appuis de la touche back
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
