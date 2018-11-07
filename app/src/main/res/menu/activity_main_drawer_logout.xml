@@ -20,11 +20,6 @@
             android:id="@+id/promotions"
             android:icon="@drawable/icn_promotions"
             android:title="Promotions" />
-
-        <item
-            android:id="@+id/logout"
-            android:icon="@drawable/icn_logout"
-            android:title="Déconnexion" />
     </group>
 
     <item android:id="@+id/file"
@@ -38,5 +33,6 @@
             </menu>
         </group>
     </item>
+
 
 </menu>

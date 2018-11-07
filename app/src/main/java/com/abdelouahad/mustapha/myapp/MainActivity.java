@@ -1,6 +1,7 @@
 package com.abdelouahad.mustapha.myapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +21,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private NavigationView navigationView;
     private int[] mImgIds;
     private LayoutInflater mInflater;
     private Boolean login_state= false;
@@ -85,10 +89,26 @@ public class MainActivity extends AppCompatActivity
         });
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
+
+
+        if(!login_state) {
+            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
+            navigationView.addHeaderView(nav_header);
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.activity_main_drawer_logout); //inflate new items.
+
+        }else{
+            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
+            navigationView.addHeaderView(nav_header);
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.activity_main_drawer); //inflate new items.
+        }
+        ////
 
         //laisse les couleurs d origine
         navigationView.setItemIconTintList(null);
+
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -160,7 +180,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_contactMe) {
             return true;
         }
 
@@ -174,12 +194,19 @@ public class MainActivity extends AppCompatActivity
         Intent intent =null;
         switch (item.getItemId()) {
             case (R.id.my_travels):
-                intent = new Intent(MainActivity.this, MyTravelsLogout.class);
+                if(!login_state)
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                else
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.startActivity(intent);
                 break;
             case (R.id.my_account):
-                intent = new Intent(MainActivity.this, LoginActivity.class);
+                if(!login_state)
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                else
+                    intent = new Intent(MainActivity.this, UpdateActivity.class);
+
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.startActivity(intent);
                 break;
@@ -189,6 +216,13 @@ public class MainActivity extends AppCompatActivity
                 break;
             case (R.id.logout):
                 break;
+            case (R.id.debug_account):
+                //change automatiquement
+                Log.i("LOG STATE before:", String.valueOf(login_state));
+                login_state= !login_state;
+                Log.i("LOG STATE after:", String.valueOf(login_state));
+                checkLog();
+                break;
         }
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
@@ -196,5 +230,28 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+    private  void checkLog(){
+        if(login_state) {
+            View oldHeaderView = navigationView.getHeaderView(0);
+            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
+
+            navigationView.removeHeaderView(oldHeaderView);
+            navigationView.addHeaderView(nav_header);
+            //navigationView.getHeaderView(0).refreshDrawableState();
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.activity_main_drawer); //inflate new items.
+
+
+        }else{
+            View oldHeaderView = navigationView.getHeaderView(0);
+            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
+
+            navigationView.removeHeaderView(oldHeaderView);
+            navigationView.addHeaderView(nav_header);
+            navigationView.getMenu().clear(); //clear old inflated items.
+            navigationView.inflateMenu(R.menu.activity_main_drawer_logout); //inflate new items.
+        }
+    }
 
 }
