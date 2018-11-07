@@ -1,6 +1,7 @@
 package com.abdelouahad.mustapha.myapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -14,11 +15,14 @@ import android.widget.Toast;
 
 public class ChooseDateActivity extends AppCompatActivity {
 
+    private Button btn_classes;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
+        btn_classes = findViewById(R.id.classes);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -46,6 +50,20 @@ public class ChooseDateActivity extends AppCompatActivity {
                 String dateStr =  String.valueOf(dayOfMonth + "/" + month + "/" + year);
                 Toast.makeText(ChooseDateActivity.this,dateStr,Toast.LENGTH_LONG).show();
 
+
+            }
+        });
+
+
+
+        btn_classes = findViewById(R.id.classes);
+
+        btn_classes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ChooseDateActivity.this, TravellersActivity.class);
+                ChooseDateActivity.this.startActivity(intent);
 
             }
         });

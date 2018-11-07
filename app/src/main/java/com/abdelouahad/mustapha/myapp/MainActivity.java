@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,12 +32,13 @@ public class MainActivity extends AppCompatActivity
     private int[] mImgIds;
     private LayoutInflater mInflater;
     private Boolean login_state= false;
+    private Button destination;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        destination = findViewById(R.id.yourDestination);
 
         //crée la gallerie des destinations tendence
         mInflater = LayoutInflater.from(this);
@@ -89,6 +91,18 @@ public class MainActivity extends AppCompatActivity
         });
         toggle.syncState();
 
+
+        ///boutton Votre destination Onclick
+        destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChooseDateActivity.class);
+                MainActivity.this.startActivity(intent);
+
+            }
+        });
+
+
         navigationView = findViewById(R.id.nav_view);
 
 
@@ -104,7 +118,20 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.activity_main_drawer); //inflate new items.
         }
-        ////
+        //////NOT WORK///
+        View headerview = navigationView.getHeaderView(0);
+
+        headerview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(MainActivity.this, String.valueOf(v.getId()), Toast.LENGTH_SHORT).show();
+                if(v.getId()== R.id.button_toLogin){
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    MainActivity.this.startActivity(intent);
+                }
+            }
+        });
 
         //laisse les couleurs d origine
         navigationView.setItemIconTintList(null);
@@ -144,6 +171,10 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this,
                             "The favorite list would appear on clicking this icon",
                             Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(MainActivity.this, DescriptionActivity.class);
+                    MainActivity.this.startActivity(intent);
+
                 }
             });
             gallery.addView(view);
@@ -253,5 +284,7 @@ public class MainActivity extends AppCompatActivity
             navigationView.inflateMenu(R.menu.activity_main_drawer_logout); //inflate new items.
         }
     }
+
+
 
 }

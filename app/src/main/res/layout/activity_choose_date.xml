@@ -55,9 +55,10 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/classes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Voyageurs/Classes"/>
+        android:text="Voyageurs/Classes" />
 
     <Button
         android:layout_width="wrap_content"
