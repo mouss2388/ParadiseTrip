@@ -27,4 +27,18 @@
         <item>Mme</item>
         <item>Mlle</item>
     </string-array>
+
+
+    <string name="depart">Départ?</string>
+    <string-array name="depart_array">
+        <item>Paris-CDG</item>
+        <item>Paris-Orly</item>
+    </string-array>
+
+    <string name="come">Arrivé?</string>
+    <string-array name="come_array">
+        <item>Paris-CDG</item>
+        <item>Paris-Orly</item>
+    </string-array>
+
 </resources>

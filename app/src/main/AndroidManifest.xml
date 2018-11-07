@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".TravellersActivity"
+            android:name=".ChooseDateActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,8 +31,9 @@
         <activity android:name=".MyTravelsLogout" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UpdateActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".DescriptionActivity"/>
+        <activity android:name=".TravellersActivity" />
+        <activity android:name=".DescriptionActivity" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
