@@ -6,10 +6,10 @@
 
     <color name="colorMain">#1957FF</color>
     <color name="colorDegrad">#0044FF</color>
+    <color name="colorDark">#0C2B7F</color>
+
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
 
 
-
-    0044FF
 </resources>
