@@ -8,6 +8,15 @@
         <item name="colorAccent">@color/colorDark</item>
     </style>
 
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Button" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorDegrad</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorDark</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

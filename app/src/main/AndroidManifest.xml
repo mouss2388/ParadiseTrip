@@ -27,13 +27,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MyTravelsLogout" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".UpdateActivity" />
-        <activity android:name=".TravellersActivity" />
-        <activity android:name=".DescriptionActivity" />
-        <activity android:name=".ChooseDateActivity"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MyTravelsLogout"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UpdateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TravellersActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DescriptionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChooseDateActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -24,11 +24,13 @@
             android:background="@drawable/btn_corner_float"
             android:text="Votre destination"
             android:textColor="@color/colorWhite"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:alpha="0.60"
             android:textAllCaps="false"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            app:fontFamily="sans-serif-condensed"
+
             />
 
         <ImageButton
@@ -37,7 +39,8 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:contentDescription="Image  background"
-            android:src="@drawable/panorama_beach" />
+            android:src="@drawable/panorama_beach"
+            android:visibility="visible" />
 
     </RelativeLayout>
 
@@ -49,7 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
         android:gravity = "bottom"
         android:layout_marginBottom="100dp"
         android:orientation="vertical"
@@ -57,13 +59,18 @@
         >
 
         <TextView
+
             android:id="@+id/trend_destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="bottom"
-            android:text="Test Destination tendence"
-            />
+            android:gravity="start"
+            android:text="Destination les plus tendance"
+            android:textColor="@color/colorDark"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:fontFamily="sans-serif-condensed"
+            android:layout_marginBottom="7dp"/>
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
