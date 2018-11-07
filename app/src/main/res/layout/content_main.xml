@@ -14,16 +14,26 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <Button
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Votre destination"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_corner_float"
+            android:text="Votre destination"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:alpha="0.60"
+            android:textAllCaps="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            />
 
         <ImageButton
             android:id="@+id/panorama_background"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:contentDescription="Image  background"
@@ -50,7 +60,7 @@
             android:id="@+id/trend_destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:gravity="center"
             android:layout_gravity="bottom"
             android:text="Test Destination tendence"
             />
