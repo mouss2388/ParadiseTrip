@@ -65,13 +65,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="7dp"
             android:gravity="start"
-            android:text="Destination les plus tendance"
+            android:text="Destinations tendance du moment"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
             android:textStyle="bold|italic"
-            app:fontFamily="sans-serif-condensed"
-            android:layout_marginBottom="7dp"/>
+            app:fontFamily="sans-serif-condensed" />
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
