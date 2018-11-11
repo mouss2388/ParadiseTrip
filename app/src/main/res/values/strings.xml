@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">My App</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -36,6 +36,7 @@
     </string-array>
 
     <string name="come">Arrivé?</string>
+    <string name="email_pat" tools:ignore="TypographyDashes"><![CDATA[^[a–zA–Z0-9#_~!$&\'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$]]></string>
     <string-array name="come_array">
         <item>Paris-CDG</item>
         <item>Paris-Orly</item>

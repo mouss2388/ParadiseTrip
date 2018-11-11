@@ -1,12 +1,10 @@
 package com.abdelouahad.mustapha.myapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,19 +15,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,7 +27,7 @@ public class MainActivity extends AppCompatActivity
     private int[] mImgIds;
     private LayoutInflater mInflater;
     private Boolean login_state= false;
-    private Button destination;
+    protected Button destination;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,13 +102,13 @@ public class MainActivity extends AppCompatActivity
 
 
         if(!login_state) {
-            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
+            @SuppressLint("InflateParams") View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
             navigationView.addHeaderView(nav_header);
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.activity_main_drawer_logout); //inflate new items.
 
         }else{
-            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
+            @SuppressLint("InflateParams") View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
             navigationView.addHeaderView(nav_header);
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.activity_main_drawer); //inflate new items.
@@ -250,7 +239,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        Intent intent =null;
+        Intent intent ;
         switch (item.getItemId()) {
             case (R.id.my_travels):
                 if(!login_state)
@@ -293,7 +282,7 @@ public class MainActivity extends AppCompatActivity
     private  void checkLog(){
         if(login_state) {
             View oldHeaderView = navigationView.getHeaderView(0);
-            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
+            @SuppressLint("InflateParams") View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
 
             navigationView.removeHeaderView(oldHeaderView);
             navigationView.addHeaderView(nav_header);
@@ -304,7 +293,7 @@ public class MainActivity extends AppCompatActivity
 
         }else{
             View oldHeaderView = navigationView.getHeaderView(0);
-            View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
+            @SuppressLint("InflateParams") View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
 
             navigationView.removeHeaderView(oldHeaderView);
             navigationView.addHeaderView(nav_header);

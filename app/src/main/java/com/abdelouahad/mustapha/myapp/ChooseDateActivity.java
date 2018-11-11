@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class ChooseDateActivity extends AppCompatActivity {
 
-    private Button btn_classes;
+    Button btn_classes;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
