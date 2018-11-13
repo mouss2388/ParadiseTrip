@@ -27,9 +27,9 @@
             android:title="Déconnexion" />
     </group>
 
-    <item android:id="@+id/file"
+   <!-- <item android:id="@+id/file"
         android:title="Debug" >
-        <!-- "file" submenu -->
+
         <group>
             <menu>
                 <item android:id="@+id/debug_account"
@@ -37,6 +37,6 @@
 
             </menu>
         </group>
-    </item>
+    </item> -->
 
 </menu>

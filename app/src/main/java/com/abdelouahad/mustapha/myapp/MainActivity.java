@@ -67,17 +67,17 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-                Toast.makeText(MainActivity.this,
+                /*Toast.makeText(MainActivity.this,
                         "onDrawerOpened",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG).show();*/
 
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
-                Toast.makeText(MainActivity.this,
+               /* Toast.makeText(MainActivity.this,
                         "onDrawerClosed",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG).show();*/
             }
 
             @Override
@@ -243,42 +243,36 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected( MenuItem item) {
 
         Intent intent ;
         switch (item.getItemId()) {
             case (R.id.my_travels):
-                if(!login_state)
-                    intent = new Intent(MainActivity.this, LoginActivity.class);
-                else
-                    intent = new Intent(MainActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent = new Intent(MainActivity.this, MyTravels.class);
                 this.startActivity(intent);
                 break;
             case (R.id.my_account):
-                if(!login_state)
-                    intent = new Intent(MainActivity.this, LoginActivity.class);
-                else
-                    intent = new Intent(MainActivity.this, UpdateActivity.class);
-
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent = new Intent(MainActivity.this, UpdateActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.startActivity(intent);
                 break;
             case (R.id.parameters):
+                Toast.makeText(MainActivity.this,
+                        "push on paramaters",
+                        Toast.LENGTH_LONG).show();
                 break;
             case (R.id.promotions):
+                Toast.makeText(MainActivity.this,
+                        "push on promotions",
+                        Toast.LENGTH_LONG).show();
                 break;
             case (R.id.logout):
+                Toast.makeText(MainActivity.this,
+                        "push on logout",
+                        Toast.LENGTH_LONG).show();
                 break;
-            case (R.id.debug_account):
-                //change automatiquement
-                Log.i("LOG STATE before:", String.valueOf(login_state));
-                login_state= !login_state;
-                Log.i("LOG STATE after:", String.valueOf(login_state));
-                checkLog();
-                break;
+
         }
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
@@ -287,7 +281,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private  void checkLog(){
+    /*private  void checkLog(){
         if(login_state) {
             View oldHeaderView = navigationView.getHeaderView(0);
             @SuppressLint("InflateParams") View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_login, null);
@@ -308,7 +302,7 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.activity_main_drawer_logout); //inflate new items.
         }
-    }
+    }*/
 
 
 

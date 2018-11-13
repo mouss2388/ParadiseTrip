@@ -5,13 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class MyTravelsLogout extends AppCompatActivity {
+public class MyTravels extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_travels_logout);
+        setContentView(R.layout.my_travels);
 
         // add back arrow to toolbar
         if (getSupportActionBar() != null){
