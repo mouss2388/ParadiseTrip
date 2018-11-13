@@ -1,5 +1,6 @@
 package com.abdelouahad.mustapha.myapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
@@ -14,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String EMAIL_PATTERN ="^[a–zA–Z0-9#_~!$&\\'()*+,;=:.\\\"(),:;<>@\\\\[\\\\]\\\\\\\\]+@[a-zA-Z0-9-]+(\\\\.[a-zA-Z0-9-]+)*$";
+    private final String EMAIL_PATTERN ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     private Matcher matcher;
 
@@ -30,7 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        // add back arrow to toolbar
+        //Cache l ActionBar
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.hide();
+       /* // add back arrow to toolbar
         if (getSupportActionBar() != null){
             ActionBar actionbar = getSupportActionBar();
             //Disable Title ToolBar
@@ -38,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             //Display Arrow Back
             actionbar.setDisplayHomeAsUpEnabled(true);
             actionbar.setDisplayShowHomeEnabled(true);
-        }
+        }*/
 
         passwordWrapper =  findViewById(R.id.passwordWrapper);
         usernameWrapper=  findViewById(R.id.emailWrapper);
@@ -71,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void doLogin() {
         Toast.makeText(getApplicationContext(), "OK! I'm performing login.", Toast.LENGTH_SHORT).show();
-        // login procedure; not within the scope of this tutorial.
+        Intent  intent = new Intent(LoginActivity.this, MainActivity.class);
+        this.startActivity(intent);
+// login procedure; not within the scope of this tutorial.
     }
 
     public boolean validateEmail(String email) {
@@ -93,5 +99,18 @@ public class LoginActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void forgotPasswd(View v){
+        Toast.makeText(getApplicationContext(), "OK! forgotPasswd.", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void register(View v){
+        Toast.makeText(getApplicationContext(), "OK! register", Toast.LENGTH_SHORT).show();
+        Intent  intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        this.startActivity(intent);
+
+    }
+
 }
 
