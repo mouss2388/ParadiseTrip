@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String EMAIL_PATTERN = getResources().getString(R.string.email_pat);
+    private final String EMAIL_PATTERN ="^[a–zA–Z0-9#_~!$&\\'()*+,;=:.\\\"(),:;<>@\\\\[\\\\]\\\\\\\\]+@[a-zA-Z0-9-]+(\\\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     private Matcher matcher;
 
