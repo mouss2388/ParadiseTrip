@@ -2,13 +2,21 @@ package com.abdelouahad.mustapha.myapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,9 +29,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     TextInputLayout passwordWrapper =null;
-    TextInputLayout usernameWrapper =null;
+    TextInputLayout emailWrapper =null;
+
+    String email,password;
     Button btn = null;
 
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
 
@@ -31,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
+        mAuth = FirebaseAuth.getInstance();
         //Cache l ActionBar
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
@@ -45,26 +57,26 @@ public class LoginActivity extends AppCompatActivity {
         }*/
 
         passwordWrapper =  findViewById(R.id.passwordWrapper);
-        usernameWrapper=  findViewById(R.id.emailWrapper);
+        emailWrapper=  findViewById(R.id.emailWrapper);
         btn = findViewById(R.id.btnLogin);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String username = String.valueOf(usernameWrapper.getEditText().getText());
-                String password = String.valueOf(passwordWrapper.getEditText().getText());
+                email = String.valueOf(emailWrapper.getEditText().getText());
+                password = String.valueOf(passwordWrapper.getEditText().getText());
                 Toast.makeText(LoginActivity.this,
-                        username +":"+password,
+                        email +":"+password,
                         Toast.LENGTH_LONG).show();
 
 
-                if (!validateEmail(username)) {
-                    usernameWrapper.setError("Not a valid email address!");
+                if (!validateEmail(email)) {
+                    emailWrapper.setError("Not a valid email address!");
                 } else if (!validatePassword(password)) {
                     passwordWrapper.setError("Not a valid password!");
                 } else {
-                    usernameWrapper.setErrorEnabled(false);
+                    emailWrapper.setErrorEnabled(false);
                     passwordWrapper.setErrorEnabled(false);
                     doLogin();
                 }
@@ -74,11 +86,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doLogin() {
-        Toast.makeText(getApplicationContext(), "OK! I'm performing login.", Toast.LENGTH_SHORT).show();
-        Intent  intent = new Intent(LoginActivity.this, MainActivity.class);
-        this.startActivity(intent);
-// login procedure; not within the scope of this tutorial.
-    }
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("LoginAcitivty", "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(getApplicationContext(), "Success! "+user.getEmail()+" : "+password, Toast.LENGTH_SHORT).show();
+                            Intent  intent = new Intent(LoginActivity.this, MainActivity.class);
+                            LoginActivity.this.startActivity(intent);
+
+                            // updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("LoginAcitivty", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
+                        }
+
+                        // ...
+                    }
+                });
+        }
 
     public boolean validateEmail(String email) {
         matcher = pattern.matcher(email);

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -53,11 +54,11 @@ public class MainActivity extends AppCompatActivity
         });*/
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);*/
 
 
-        drawer.addDrawerListener(toggle);
+        //drawer.addDrawerListener(toggle);
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -84,7 +85,9 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        toggle.syncState();
+       // toggle.syncState();
+
+
 
 
         ///boutton Votre destination Onclick
@@ -100,8 +103,12 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = findViewById(R.id.nav_view);
 
+        View headerLayout = navigationView.getHeaderView(0);
+       TextView useremail = (TextView) headerLayout.findViewById(R.id.email_data);
+       useremail.setText("test@mail.fr");
 
-        if(!login_state) {
+      /* CHANGE MENU DYNAMICALLY
+      if(!login_state) {
             @SuppressLint("InflateParams") View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main_logout, null);
             navigationView.addHeaderView(nav_header);
             navigationView.getMenu().clear(); //clear old inflated items.
@@ -112,11 +119,11 @@ public class MainActivity extends AppCompatActivity
             navigationView.addHeaderView(nav_header);
             navigationView.getMenu().clear(); //clear old inflated items.
             navigationView.inflateMenu(R.menu.activity_main_drawer); //inflate new items.
-        }
+        }*/
         //////NOT WORK///
-        View headerview = navigationView.getHeaderView(0);
+       // View headerview = navigationView.getHeaderView(0);
 
-        headerview.setOnClickListener(new View.OnClickListener() {
+      /*  headerview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -126,12 +133,13 @@ public class MainActivity extends AppCompatActivity
                     MainActivity.this.startActivity(intent);
                 }
             }
-        });
+        });*/
 
         //laisse les couleurs d origine
         navigationView.setItemIconTintList(null);
 
         navigationView.setNavigationItemSelectedListener(this);
+
 
 
       /*  // Write a message to the database
