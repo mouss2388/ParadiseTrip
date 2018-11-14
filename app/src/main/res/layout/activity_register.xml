@@ -32,7 +32,7 @@
 
             <android.support.design.widget.TextInputEditText
                 android:inputType="textCapCharacters"
-                android:id="@+id/name"
+                android:id="@+id/name_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nom*" />
@@ -68,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email*" />
+
     </android.support.design.widget.TextInputLayout>
 
 
@@ -80,7 +81,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:inputType="textEmailAddress"
-            android:id="@+id/pssword"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mot de passe*" />
@@ -94,7 +95,14 @@
         android:textSize="10sp"/>
 
     <Button
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="S'enregistrer"/>
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE ACCOUNT"/>
 </LinearLayout>
