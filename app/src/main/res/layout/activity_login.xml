@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Mot de passe oublié ?"
         android:clickable="true"
-        android:onClick="forgotPasswd"
+        android:onClick="forgotPassword"
         />
 
 

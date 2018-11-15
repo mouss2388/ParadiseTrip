@@ -71,21 +71,23 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
 
 
-                if (!validateEmail(email)) {
+               /* if (!validateEmail(email)) {
                     emailWrapper.setError("Not a valid email address!");
                 } else if (!validatePassword(password)) {
                     passwordWrapper.setError("Not a valid password!");
-                } else {
+                } else {*/
                     emailWrapper.setErrorEnabled(false);
                     passwordWrapper.setErrorEnabled(false);
                     doLogin();
-                }
+               // }
             }
         });
 
     }
 
     public void doLogin() {
+        email="mouss2388@yopmail.com";
+        password="azerty23";
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -95,14 +97,18 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("LoginAcitivty", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(getApplicationContext(), "Success! "+user.getEmail()+" : "+password, Toast.LENGTH_SHORT).show();
-                            Intent  intent = new Intent(LoginActivity.this, MainActivity.class);
-                            LoginActivity.this.startActivity(intent);
+                            if(user.isEmailVerified()) {
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                LoginActivity.this.startActivity(intent);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "You must verify your Email: ", Toast.LENGTH_SHORT).show();
 
+                            }
                             // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("LoginAcitivty", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, "Authentication failed. Email or Password unknow ",
                                     Toast.LENGTH_SHORT).show();
                             //updateUI(null);
                         }
@@ -132,9 +138,10 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void forgotPasswd(View v){
+    public void forgotPassword(View v){
         Toast.makeText(getApplicationContext(), "OK! forgotPasswd.", Toast.LENGTH_SHORT).show();
-
+        Intent  intent = new Intent(LoginActivity.this, ResetPsswordActivity.class);
+        this.startActivity(intent);
     }
 
     public void register(View v){
