@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -30,10 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     String mEmail = "colomb1506@yopmail.com";
     String mPassword = "passw0rd";
-    String nom;
 
     private FirebaseAuth mAuth;
-    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         civility = findViewById(R.id.civility);
-        name = findViewById(R.id.name_user);
+        name = findViewById(R.id.name);
         firstname = findViewById(R.id.firstname);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -52,12 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         delete = findViewById(R.id.delete);
 
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user.delete();
-            }
-        });
+
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +66,48 @@ public class RegisterActivity extends AppCompatActivity {
                                 password.getText() + " "
                         ,
                         Toast.LENGTH_LONG).show();
-                nom = name.getText().toString();
                 createAccount();
 
 
             }
         });
+
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteUser();
+            }
+        });
+    }
+
+    private void deleteUser(){
+        AuthCredential credential = EmailAuthProvider
+                .getCredential("colomb1506@yopmail.com", "passw0rd");
+
+        final FirebaseUser user = mAuth.getCurrentUser();
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(RegisterActivity.this, "User reauthenticate ",
+                                Toast.LENGTH_SHORT).show();
+
+                        user.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(RegisterActivity.this, "User reauthenticate ",
+                                                    Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                    }
+                                });
+
+                    }
+                });
 
 
     }
@@ -92,7 +123,6 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "createUserWithEmail:success",
                                     Toast.LENGTH_SHORT).show();
 
-
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -105,59 +135,63 @@ public class RegisterActivity extends AppCompatActivity {
                         // ...
                     }
                 });
-        user = mAuth.getCurrentUser();
-        //testUserExists();
+        testUserExists();
         setDisplayName();
     }
 
 
     private void setDisplayName() {
 
-            mAuth.signInWithEmailAndPassword(mEmail, mPassword)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d("LoginAcitivty", "signInWithEmail:success");
-                                final FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(getApplicationContext(), "Success! "+user.getEmail()+" : "+password, Toast.LENGTH_SHORT).show();
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName("My name test").build();
+        mAuth.signInWithEmailAndPassword(mEmail, mPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("LoginAcitivty", "signInWithEmail:success");
+                            final FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(getApplicationContext(), "Success! "+user.getEmail()+" : "+password, Toast.LENGTH_SHORT).show();
 
-                                user.updateProfile(profileUpdates)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(RegisterActivity.this, "UPDATED",
-                                                            Toast.LENGTH_SHORT).show();
-                                                    getInfoAccount(user);
-                                                } else {
-                                                    Toast.makeText(RegisterActivity.this, "UPDATED FAILED",
-                                                            Toast.LENGTH_SHORT).show();
-                                                }
+                            String fullName = firstname.getText()+" "+name.getText();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(fullName).build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(RegisterActivity.this, "UPDATED",
+                                                        Toast.LENGTH_SHORT).show();
+//                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                if(!user.isEmailVerified())
+                                                    user.sendEmailVerification();
+
+                                                getInfoAccount(user);
+                                            } else {
+                                                Toast.makeText(RegisterActivity.this, "UPDATED FAILED",
+                                                        Toast.LENGTH_SHORT).show();
                                             }
-                                        });
+                                        }
+                                    });
 
-                                // updateUI(user);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w("LoginAcitivty", "signInWithEmail:failure", task.getException());
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
-                            }
-
-                            // ...
+                            // updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("LoginAcitivty", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
                         }
-                    });
-        }
+
+                        // ...
+                    }
+                });
+    }
 
 
 
     private void getInfoAccount(FirebaseUser user){
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
             // Name, email address, and profile photo Url
