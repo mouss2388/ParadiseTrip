@@ -21,6 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,12 +32,21 @@ public class MainActivity extends AppCompatActivity
     private LayoutInflater mInflater;
     private Boolean login_state= false;
     protected Button destination;
+    private TextView name, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        navigationView = findViewById(R.id.nav_view);
+
+        View headerLayout = navigationView.getHeaderView(0);
+
+        name= headerLayout.findViewById(R.id.username_data);
+        email = headerLayout.findViewById(R.id.email_data);
+
         destination = findViewById(R.id.yourDestination);
+
 
         //crée la gallerie des destinations tendence
         mInflater = LayoutInflater.from(this);
@@ -101,11 +113,8 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        navigationView = findViewById(R.id.nav_view);
 
-        View headerLayout = navigationView.getHeaderView(0);
-       TextView useremail = (TextView) headerLayout.findViewById(R.id.email_data);
-       useremail.setText("test@mail.fr");
+
 
       /* CHANGE MENU DYNAMICALLY
       if(!login_state) {
@@ -164,6 +173,7 @@ public class MainActivity extends AppCompatActivity
                 Log.w("MAIN_ACTIVITY", "Failed to read value.", error.toException());
             }
         });*/
+        userSignIn();
 
     }
 
@@ -207,6 +217,20 @@ public class MainActivity extends AppCompatActivity
             gallery.callOnClick();
 
 
+        }
+    }
+
+    private void userSignIn(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Toast.makeText(this,"User sign In",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"His Email is "+user.getEmail(),Toast.LENGTH_LONG).show();
+            email.setText(user.getEmail());
+            name.setText(user.getDisplayName());
+
+
+        } else {
+            Toast.makeText(this,"User No signed",Toast.LENGTH_LONG).show();
         }
     }
 

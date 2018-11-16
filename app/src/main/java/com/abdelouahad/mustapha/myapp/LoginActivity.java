@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doLogin() {
-        email="mouss2388@yopmail.com";
-        password="azerty23";
+        email="colomb1506@yopmail.com";
+        password="passw0rd";
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(intent);
                             }else {
-                                Toast.makeText(getApplicationContext(), "You must verify your Email: ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "You must verify your Email!", Toast.LENGTH_SHORT).show();
 
                             }
                             // updateUI(user);
