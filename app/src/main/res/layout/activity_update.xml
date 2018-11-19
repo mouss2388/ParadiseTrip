@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -47,7 +48,7 @@
         >
 
         <android.support.design.widget.TextInputEditText
-            android:inputType="textEmailAddress"
+            android:inputType='textPersonName'
             android:id="@+id/firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,18 +73,18 @@
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/psswrdWrapper"
+        android:id="@+id/passwordWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
         >
 
         <android.support.design.widget.TextInputEditText
-            android:inputType="textEmailAddress"
-            android:id="@+id/pssword"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mot de passe*" />
+            android:hint="Mot de passe"
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -94,7 +95,13 @@
         android:textSize="10sp"/>
 
     <Button
+        android:id="@+id/btn_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mise à jour"/>
+        android:text="Mise à jour" />
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Supprimer votre Compte" />
 </LinearLayout>

@@ -1,8 +1,12 @@
 package com.abdelouahad.mustapha.myapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     String email,password;
     Button btn = null;
 
+    public static String mPreferences ="PASSWORD",key_passwrd="password";
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -93,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            setSavePassword(password);
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("LoginAcitivty", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -151,5 +157,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public  void setSavePassword(String password){
+      //  SharedPreferences pref = this.getApplicationContext().
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(mPreferences, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(key_passwrd, password);
+        editor.apply();
+    }
 }
 

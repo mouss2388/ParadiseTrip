@@ -2,12 +2,12 @@ package com.abdelouahad.mustapha.myapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,6 +23,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import static com.abdelouahad.mustapha.myapp.LoginActivity.key_passwrd;
+import static com.abdelouahad.mustapha.myapp.LoginActivity.mPreferences;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -173,7 +176,6 @@ public class MainActivity extends AppCompatActivity
                 Log.w("MAIN_ACTIVITY", "Failed to read value.", error.toException());
             }
         });*/
-        userSignIn();
 
     }
 
@@ -328,6 +330,38 @@ public class MainActivity extends AppCompatActivity
         }
     }*/
 
+    @SuppressLint("LongLogTag")
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userSignIn();
+        SharedPreferences prefs = getSharedPreferences(mPreferences, MODE_PRIVATE);
+        String restoredText = prefs.getString(key_passwrd, null);
+        Log.i("LOG_DETECTED MaintActivity","onStart");
+        Log.i("LOG_DETECTED MaintActivity",restoredText);
 
+    }
+
+    @SuppressLint("LongLogTag")
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("LOG_DETECTED MaintActivity","onPause");
+
+    }
+    @SuppressLint("LongLogTag")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("LOG_DETECTED MaintActivity","onResume");
+        //userSignIn();
+    }
+
+    @SuppressLint("LongLogTag")
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("LOG_DETECTED MaintActivity","onDestroy");
+    }
 
 }
