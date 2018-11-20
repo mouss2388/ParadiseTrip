@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -21,19 +21,32 @@
         android:src="@drawable/arrow_down"/>
 
 
-    <EditText
-        android:id="@+id/reset_email"
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="8dp"
+        android:id="@+id/reset_emailWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
+        app:passwordToggleEnabled="true"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:inputType="textEmailAddress"
+            android:id="@+id/reset_email"
+            android:ems="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Votre adresse Email" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:layout_marginTop="5dp"
+        android:theme="@style/AppTheme.ButtonCustom"
         android:id="@+id/reset_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Button" />
+        android:text="réinitialiser votre mot de passe"
+        android:textAllCaps="false"/>
 
 
 </LinearLayout>
