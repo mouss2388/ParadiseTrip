@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:background="@drawable/btn_corner_float"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choisir"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:alpha="0.60"
+            android:textAllCaps="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:fontFamily="sans-serif-condensed"
+            />
 
         <ImageButton
             android:id="@+id/panorama_background"
@@ -27,6 +37,8 @@
 
 
     <TextView
+        android:textColor="@color/colorDark"
+        android:textStyle="bold|italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -37,6 +49,7 @@
 
 
     <TextView
+        android:textColor="@color/colorDark"
         android:id="@+id/description"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
