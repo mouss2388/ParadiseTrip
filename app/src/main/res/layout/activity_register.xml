@@ -8,6 +8,7 @@
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:gravity="center"
     >
 
 
@@ -89,20 +90,27 @@
 
 
     <TextView
+        android:layout_gravity="left"
+        android:textStyle="italic"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="*Champs obligatoires"
-        android:textSize="10sp"/>
+        android:textSize="12.5sp"
+        android:textColor="@color/colorBlack"/>
 
     <Button
+        android:layout_marginTop="8dp"
+        android:theme="@style/AppTheme.ButtonCustom"
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="S'enregistrer"/>
 
     <Button
+        android:theme="@style/AppTheme.ButtonCustom"
         android:id="@+id/delete"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DELETE ACCOUNT"/>
 </LinearLayout>
