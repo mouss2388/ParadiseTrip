@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    >
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,19 +88,29 @@
 
 
     <TextView
+        android:layout_gravity="left"
+        android:textStyle="italic"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="*Champs obligatoires"
-        android:textSize="10sp"/>
+        android:textSize="12.5sp"
+        android:textColor="@color/colorBlack"/>
 
     <Button
+        android:layout_marginTop="10dp"
+        android:theme="@style/AppTheme.ButtonCustom"
         android:id="@+id/btn_update"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mise à jour" />
+        android:text="Mise à jour"
+        android:textAllCaps="false"/>
     <Button
+        android:layout_marginTop="5dp"
+        android:theme="@style/AppTheme.ButtonCustom"
         android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Supprimer votre Compte" />
+        android:text="Supprimer Compte"
+        android:textAllCaps="false"/>
 </LinearLayout>
