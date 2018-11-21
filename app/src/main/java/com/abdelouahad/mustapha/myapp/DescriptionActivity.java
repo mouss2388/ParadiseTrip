@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DescriptionActivity extends AppCompatActivity {
 
@@ -17,12 +18,15 @@ public class DescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
 
+        String sessionCountry= getIntent().getStringExtra(MainActivity.EXTRA_COUNTRY);
+
         //Active le scrollbar du textView
         description = findViewById(R.id.description);
         description.setMovementMethod(new ScrollingMovementMethod());
 
         LinearLayout layout = findViewById(R.id.trend_linear);
 
+        Toast.makeText(DescriptionActivity.this,sessionCountry,Toast.LENGTH_LONG).show();
         for (int i = 0; i < 3; i++) {
             ImageView imageView = new ImageView(this);
             imageView.setId(i);
