@@ -26,11 +26,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import static com.abdelouahad.mustapha.myapp.LoginActivity.key_passwrd;
 import static com.abdelouahad.mustapha.myapp.LoginActivity.mPreferences;
@@ -162,30 +159,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-      /*  // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("second Message");
-        myRef.setValue("Hello World");
-
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("MAIN_ACTIVITY", "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("MAIN_ACTIVITY", "Failed to read value.", error.toException());
-            }
-        });*/
-
     }
 
 
@@ -203,18 +176,21 @@ public class MainActivity extends AppCompatActivity
         // DatabaseReference myRef = database.getReference("test");
         final LinearLayout gallery = findViewById(R.id.id_gallery);
 
-        for(int i=0;i<5;i++){
 
-            myRef[i]=database.getReference("trend_trip_"+(i+1));
-            /////
-            // Read from the database
-            myRef[i].addValueEventListener(new ValueEventListener() {
+
+        final ReadData [] info = new ReadData[5];
+        for(int i=0; i<5; i++){
+            info[i] = new  ReadData();
+            final int finalI = i;
+            info[i].getData("ID_"+(i+1),new FirebaseCallback() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    String value = dataSnapshot.getValue(String.class);
-                    byte[] decodedString = Base64.decode(String.valueOf(value), Base64.DEFAULT);
+                public void onCallback() {
+                    //Log.i("DATA INFO"," obj:"+ info[finalI].getCountry());
+                    //Log.i("DATA INFO"," obj:"+ info[finalI].getBanner());
+                    //Log.i("DATA INFO"," obj:"+ info[finalI].getDescription());
+
+
+                    byte[] decodedString = Base64.decode(String.valueOf(info[finalI].getBanner()), Base64.DEFAULT);
 
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
@@ -242,20 +218,12 @@ public class MainActivity extends AppCompatActivity
                     gallery.addView(view);
 
                     gallery.callOnClick();
-                    /////////
 
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w("RESETPASSWORD", "Failed to read value.", error.toException());
                 }
             });
-            ////
-
-
         }
+
+
        /* for (int mImgId : mImgIds) {
 
             View view = mInflater.inflate(R.layout.activity_gallery_item,
