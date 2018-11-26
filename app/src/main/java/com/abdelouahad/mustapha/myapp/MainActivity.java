@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
                 public void onCallback() {
                     Log.i("DATA INFO"," obj:"+ info[finalI].getId());
                     Log.i("DATA INFO"," obj:"+ info[finalI].getBanner());
-                    Log.i("DATA INFO"," obj:"+ info[finalI].getDescription());
+                  //  Log.i("DATA INFO"," obj:"+ info[finalI].getDescription());
 
 
                     byte[] decodedString = Base64.decode(String.valueOf(info[finalI].getBanner()), Base64.DEFAULT);
@@ -212,7 +212,8 @@ public class MainActivity extends AppCompatActivity
                                     Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(MainActivity.this, DescriptionActivity.class);
-                            intent.putExtra(EXTRA_COUNTRY, "MAROC");
+                            String id= String.valueOf(info[finalI].getId());
+                            intent.putExtra(EXTRA_COUNTRY, id);
                             MainActivity.this.startActivity(intent);
 
                         }
