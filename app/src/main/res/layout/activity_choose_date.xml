@@ -11,6 +11,15 @@
     android:gravity="center"
     >
 
+    <TextView
+        android:gravity="center"
+        android:id="@+id/destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BAHAMAS"
+        android:textColor="@color/colorBlack"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,5 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chercher des vols"/>
+
+
 
 </LinearLayout>

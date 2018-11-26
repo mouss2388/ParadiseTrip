@@ -3,10 +3,6 @@ package com.abdelouahad.mustapha.myapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -57,7 +53,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
 
 
-        final ReadData info = new ReadData();
+        final RequestDataTravel info = new RequestDataTravel();
         info.getData("TRAVEL_"+travelId,new FirebaseCallback() {
 
             @Override
@@ -89,7 +85,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
     }
 
-    private void showImgTravel(ReadData request){
+    private void showImgTravel(RequestDataTravel request){
 
         image[0]=findViewById(R.id.id_index_book_image_1);
         image[1]=findViewById(R.id.id_index_book_image_2);

@@ -29,8 +29,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
 import static com.abdelouahad.mustapha.myapp.LoginActivity.key_passwrd;
 import static com.abdelouahad.mustapha.myapp.LoginActivity.mPreferences;
 
@@ -180,9 +178,9 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        final ReadData [] info = new ReadData[5];
+        final RequestDataTravel[] info = new RequestDataTravel[5];
         for(int i=0; i<1; i++){
-            info[i] = new  ReadData("Id+Banner");
+            info[i] = new RequestDataTravel("Id+Banner");
             final int finalI = i;
             info[i].getData("TRAVEL_"+(i+1),new FirebaseCallback() {
                 @Override

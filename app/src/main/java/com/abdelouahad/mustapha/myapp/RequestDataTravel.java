@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ReadData {
+public class RequestDataTravel {
 
     private String banner;
     private String img_str_1,img_str_2,img_str_3;
@@ -27,13 +27,13 @@ public class ReadData {
     private String price;
     private int rate;
 
-    public ReadData() {
+    public RequestDataTravel() {
         this.boolAllData=true;
     }
 
 
 
-    public ReadData(String label){
+    public RequestDataTravel(String label){
         this.label=splitRequest(label);
         this.boolAllData=false;
     }
@@ -62,7 +62,7 @@ public class ReadData {
                         getAllData(key,value);
 
                     }else{
-                        Log.e("ReadData Before", "HERE");
+                        Log.e("RequestDataTravel ", "HERE");
                         getSomeData(key,value);
                         if(getExtractData()<=0)
                             break;
@@ -79,7 +79,7 @@ public class ReadData {
 
     private void getSomeData(String key, String value){
         for (String field: getLabel()){
-            Log.e("ReadData In", field);
+            Log.e("RequestDataTravel In", field);
 
             switch (field) {
 
@@ -87,7 +87,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setId(Integer.parseInt(value));
-                        Log.e("ReadData Id", String.valueOf(getId()));
+                        Log.e("RequestDataTravel Id", String.valueOf(getId()));
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -95,7 +95,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setCountry(value);
-                        Log.e("ReadData Country", getCountry());
+                        Log.e("RequestDataTravel ", getCountry());
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -103,7 +103,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setBanner(value);
-                        Log.e("ReadData getBanner", getBanner());
+                        Log.e("RequestDataTravel", getBanner());
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -111,7 +111,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setDescription(value);
-                        Log.e("ReadData getDescription", getDescription());
+                        Log.e("RequestDataTravel", getDescription());
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -119,7 +119,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setPrice(value);
-                        Log.e("ReadData price", getPrice());
+                        Log.e("RequestDataTravel price", getPrice());
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -127,7 +127,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setRate(Integer.parseInt(value));
-                        Log.e("ReadData Rate", String.valueOf(getRate()));
+                        Log.e("RequestDataTravel Rate", String.valueOf(getRate()));
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -135,7 +135,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setImg_str_1(value);
-                        Log.e("ReadData Img_1", getImg_str_1());
+                        Log.e("RequestDataTravel Img_1", getImg_str_1());
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -143,7 +143,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setImg_str_2(value);
-                        Log.e("ReadData Img_2", getImg_str_2());
+                        Log.e("RequestDataTravel Img_2", getImg_str_2());
                         setExtractData(getExtractData()-1);
                     }
                     break;
@@ -151,7 +151,7 @@ public class ReadData {
                     assert key != null;
                     if (key.equals(field)) {
                         setImg_str_3(value);
-                        Log.e("ReadData Img_3", getImg_str_3());
+                        Log.e("RequestDataTravel Img_3", getImg_str_3());
                         setExtractData(getExtractData()-1);
                     }
                     break;

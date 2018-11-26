@@ -49,7 +49,7 @@
         <activity
             android:name=".ChooseDateActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ResetPsswordActivity"></activity>
+        <activity android:name=".ResetPsswordActivity" />
     </application>
 
 </manifest>
