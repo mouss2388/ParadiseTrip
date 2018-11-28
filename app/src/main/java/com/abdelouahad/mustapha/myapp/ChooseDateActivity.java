@@ -59,11 +59,15 @@ public class ChooseDateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ChooseDateActivity.this, Result.class);
-                intent.putExtra(EXTRA_RETURN_DATE, returnDate);
-                intent.putExtra(EXTRA_START_DATE, startDate);
+                if(returnDate ==null || startDate ==null) {
+                    Toast.makeText(ChooseDateActivity.this, "Vous avez oublié de sélectionner une date de départ ou de retour", Toast.LENGTH_LONG).show();
+                }else{
+                    Intent intent = new Intent(ChooseDateActivity.this, Result.class);
+                    intent.putExtra(EXTRA_RETURN_DATE, returnDate);
+                    intent.putExtra(EXTRA_START_DATE, startDate);
+                    ChooseDateActivity.this.startActivity(intent);
+                }
 
-                ChooseDateActivity.this.startActivity(intent);
 
             }
         });
@@ -77,7 +81,7 @@ public class ChooseDateActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                               startDate= String.valueOf(day + "/" + month + "/" + year);
+                                startDate= String.valueOf(day + "/" + month + "/" + year);
 
                                 Toast.makeText(ChooseDateActivity.this, startDate, Toast.LENGTH_LONG).show();
 
