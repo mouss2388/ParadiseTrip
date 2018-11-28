@@ -1,6 +1,7 @@
 package com.abdelouahad.mustapha.myapp;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -67,11 +68,28 @@ public class RequestFlights {
     protected void getData(String rootPath, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
+        String value="";
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value;
+
+                for (DataSnapshot destination: dataSnapshot.getChildren()) {
+                    for (DataSnapshot compagny_flight: destination.getChildren()) {
+                        for (DataSnapshot data : compagny_flight.getChildren()) {
+                            if(data.getKey().equals("price")) {
+                                value = String.valueOf(data.getValue());
+                                setPrice(value);
+                            }else if(data.getKey().equals("Logo")){
+                                value = String.valueOf(data.getValue());
+                                setLogo(value);
+                            }
+                        }
+                    }
+                }
+                firebaseCallback.onCallback();
 
             }
 

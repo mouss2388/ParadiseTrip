@@ -50,6 +50,7 @@
             android:name=".ChooseDateActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ResetPsswordActivity" />
+        <activity android:name=".Result"></activity>
     </application>
 
 </manifest>
