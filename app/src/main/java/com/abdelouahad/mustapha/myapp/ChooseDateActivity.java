@@ -13,10 +13,12 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import static com.abdelouahad.mustapha.myapp.MainActivity.EXTRA_COUNTRY;
+
 public class ChooseDateActivity extends AppCompatActivity {
 
     Button btn_classes, btn_search;
-    String startDate, returnDate;
+    String startDate, returnDate,travelId;
     public static String EXTRA_START_DATE="EXTRA_START_DATE" ;
     public static String EXTRA_RETURN_DATE = "EXTRA_RETURN_DATE";
 
@@ -28,6 +30,8 @@ public class ChooseDateActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_date);
+        travelId= getIntent().getStringExtra(EXTRA_COUNTRY);
+
 
 
 
@@ -65,6 +69,8 @@ public class ChooseDateActivity extends AppCompatActivity {
                     Intent intent = new Intent(ChooseDateActivity.this, Result.class);
                     intent.putExtra(EXTRA_RETURN_DATE, returnDate);
                     intent.putExtra(EXTRA_START_DATE, startDate);
+                    intent.putExtra(EXTRA_COUNTRY, travelId);
+
                     ChooseDateActivity.this.startActivity(intent);
                 }
 
