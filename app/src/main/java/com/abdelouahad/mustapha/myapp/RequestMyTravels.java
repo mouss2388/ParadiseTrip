@@ -1,5 +1,6 @@
 package com.abdelouahad.mustapha.myapp;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -68,7 +69,7 @@ public class RequestMyTravels {
         this.id = id;
     }
 
-    protected void getData(String rootPath, final FirebaseCallback firebaseCallback) {
+    protected void getData(String rootPath, final String name_compagny_target, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
         String value="";
@@ -77,6 +78,7 @@ public class RequestMyTravels {
         if (user != null) {
             // Read from the database
             myRef.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("LongLogTag")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String value;
@@ -87,26 +89,37 @@ public class RequestMyTravels {
                             Log.e("ReqyestMyTravels uid",user.getUid());
 
                             for (DataSnapshot myTravel : Uid.getChildren()) {
-                                for (DataSnapshot id_ : myTravel.getChildren()) {
-                                    setId(id_.getKey());
-                                    for (DataSnapshot compagny : id_.getChildren()) {
-                                        Log.e("compagny",compagny.getKey());
-                                        for (DataSnapshot compagnies : compagny.getChildren()) {
-                                            for (DataSnapshot values : compagnies.getChildren()) {
-                                                if (values.getKey().equals("PRICE")) {
-                                                    Log.e("PRICE", values.getValue().toString());
+                                Log.e("ReqyestMyTravels myTravel",myTravel.getKey());
 
-                                                    value = String.valueOf(values.getValue());
-                                                    setPrice(value);
-                                                } else if (values.getKey().equals("Logo_B64")) {
-                                                    value = String.valueOf(values.getValue());
-                                                    setLogo(value);
-                                                } else if (values.getKey().equals("START_DATE")) {
-                                                    value = String.valueOf(values.getValue());
-                                                    setStart_date(value);
-                                                } else if (values.getKey().equals("RETURN_DATE")) {
-                                                    value = String.valueOf(values.getValue());
-                                                    setReturn_date(value);
+                                for (DataSnapshot id_ : myTravel.getChildren()) {
+                                    Log.e("ReqyestMyTravels id_",id_.getKey());
+                                    setId(id_.getKey());
+                                    Log.e("ReqyestMyTravels id_.getKey()",getId());
+                                    for (DataSnapshot compagny : id_.getChildren()) {
+                                        Log.e("ReqyestMyTravels compagny",compagny.getKey());
+
+                                        for (DataSnapshot compagnies : compagny.getChildren()) {
+                                            Log.e("ReqyestMyTravels compagnies",compagnies.getKey());
+                                            setName(compagnies.getKey());
+                                            if(getName().equals(name_compagny_target)) {
+
+                                                for (DataSnapshot values : compagnies.getChildren()) {
+                                                    Log.e("ReqyestMyTravels  key ", values.getKey() + " value: " + values.getValue());
+                                                    if (values.getKey().equals("PRICE")) {
+                                                        Log.e("PRICE", values.getValue().toString());
+
+                                                        value = String.valueOf(values.getValue());
+                                                        setPrice(value);
+                                                    } else if (values.getKey().equals("Logo_B64")) {
+                                                        value = String.valueOf(values.getValue());
+                                                        setLogo(value);
+                                                    } else if (values.getKey().equals("START_DATE")) {
+                                                        value = String.valueOf(values.getValue());
+                                                        setStart_date(value);
+                                                    } else if (values.getKey().equals("RETURN_DATE")) {
+                                                        value = String.valueOf(values.getValue());
+                                                        setReturn_date(value);
+                                                    }
                                                 }
                                             }
                                         }
@@ -114,7 +127,6 @@ public class RequestMyTravels {
                                 }
                             }
                             firebaseCallback.onCallback();
-                            break;
                         }
                     }
                 }

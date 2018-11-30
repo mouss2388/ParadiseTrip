@@ -1,16 +1,12 @@
 package com.abdelouahad.mustapha.myapp;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +19,7 @@ import java.util.Date;
 
 import static com.abdelouahad.mustapha.myapp.ChooseDateActivity.EXTRA_RETURN_DATE;
 import static com.abdelouahad.mustapha.myapp.ChooseDateActivity.EXTRA_START_DATE;
+import static com.abdelouahad.mustapha.myapp.MainActivity.COMPANIES_AVAILABLE;
 import static com.abdelouahad.mustapha.myapp.MainActivity.EXTRA_COUNTRY;
 
 
@@ -48,12 +45,11 @@ public class Result extends AppCompatActivity {
         // Toast.makeText(Result.this, "BEFORE REQUEST FLIGHTS", Toast.LENGTH_LONG).show();
 
         final RequestFlights flights = new RequestFlights();
-        String[] compagnies = {"AirFrance","EasyJet"};
 
-        for(int indx=0;indx< compagnies.length;indx++) {
+        for(int indx = 0; indx< COMPANIES_AVAILABLE.length; indx++) {
 
 
-            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId ,compagnies[indx], new FirebaseCallback() {
+            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId , COMPANIES_AVAILABLE[indx], new FirebaseCallback() {
                 @Override
                 public void onCallback() {
 

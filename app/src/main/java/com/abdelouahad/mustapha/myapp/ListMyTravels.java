@@ -9,8 +9,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import static com.abdelouahad.mustapha.myapp.ChooseDateActivity.EXTRA_RETURN_DATE;
-import static com.abdelouahad.mustapha.myapp.ChooseDateActivity.EXTRA_START_DATE;
+import static com.abdelouahad.mustapha.myapp.MainActivity.COMPANIES_AVAILABLE;
 
 public class ListMyTravels extends AppCompatActivity {
 
@@ -36,25 +35,29 @@ public class ListMyTravels extends AppCompatActivity {
 
 
         final RequestMyTravels myTravels = new RequestMyTravels();
-        myTravels.getData("USERS", new FirebaseCallback() {
-            @Override
-            public void onCallback() {
-
-                String imageBase64 = myTravels.getLogo();
-                String startD = myTravels.getStart_date();
-                String returnD = myTravels.getReturn_date();
-                String price = myTravels.getPrice();
-                String name_compagny= "NAME_EXAMPLE";
-                final Compagny compagny = new Compagny(name_compagny,price, "PREMIUM", startD, returnD, img, imageBase64);
-                compagniesList.add(compagny);
-
-                final CompagnyListAdapter adapter = new CompagnyListAdapter(ListMyTravels.this, R.layout.adapter_view_layout, compagniesList);
 
 
-                mListView.setAdapter(adapter);
-            }
-        });
+        for(int indx = 0; indx< COMPANIES_AVAILABLE.length; indx++) {
+            myTravels.getData("USERS", COMPANIES_AVAILABLE[indx], new FirebaseCallback() {
+                @Override
+                public void onCallback() {
 
+                    String imageBase64 = myTravels.getLogo();
+                    String startD = myTravels.getStart_date();
+                    String returnD = myTravels.getReturn_date();
+                    String price = myTravels.getPrice();
+                    String name_compagny= myTravels.getName();
+                    final Compagny compagny = new Compagny(name_compagny,price, "PREMIUM", startD, returnD, img, imageBase64);
+                    compagniesList.add(compagny);
+
+                    final CompagnyListAdapter adapter = new CompagnyListAdapter(ListMyTravels.this, R.layout.adapter_view_layout, compagniesList);
+
+
+                    mListView.setAdapter(adapter);
+                }
+            });
+
+        }
     }
 
     @Override

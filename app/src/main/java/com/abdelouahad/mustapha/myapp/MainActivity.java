@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     protected Button destination;
     private TextView name, email;
     public static String EXTRA_COUNTRY="EXTRA_COUNTRY";
+    public static final String[] COMPANIES_AVAILABLE = {"AirCaraibes","EasyJet"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

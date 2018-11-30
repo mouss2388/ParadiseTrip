@@ -41,6 +41,5 @@
         <item>Paris-Orly</item>
     </string-array>
     <string name="title_activity_images_from_firebase">ImagesFromFirebase</string>
-    <string name="title_activity_result">ResultActivity</string>
 
 </resources>
