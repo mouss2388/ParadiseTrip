@@ -9,8 +9,10 @@ public class Compagny {
     private String return_date;
     private ImageView imageView;
     private String ImageBase64;
+    private String name;
 
-    public Compagny(String price, String classe, String start_date, String return_date, ImageView imageView, String imageBase64) {
+    public Compagny(String name,String price, String classe, String start_date, String return_date, ImageView imageView, String imageBase64) {
+        this.name = name;
         this.price = price;
         this.classe = classe;
         this.start_date = start_date;
@@ -66,5 +68,13 @@ public class Compagny {
 
     public void setImageBase64(String imageBase64) {
         ImageBase64 = imageBase64;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

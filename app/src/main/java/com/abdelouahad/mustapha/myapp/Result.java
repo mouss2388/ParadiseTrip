@@ -48,29 +48,37 @@ public class Result extends AppCompatActivity {
         // Toast.makeText(Result.this, "BEFORE REQUEST FLIGHTS", Toast.LENGTH_LONG).show();
 
         final RequestFlights flights = new RequestFlights();
-        flights.getData("FLIGHTS_AVAILABLE",new FirebaseCallback() {
-            @Override
-            public void onCallback() {
+        String[] compagnies = {"AirFrance","EasyJet"};
 
-                String imageBase64 = flights.getLogo();
-                String startD =getIntent().getStringExtra(EXTRA_START_DATE);
-                String returnD =getIntent().getStringExtra(EXTRA_RETURN_DATE);
-                String price = flights.getPrice();
-                final Compagny compagny = new Compagny(price,"Economique",startD,returnD,img, imageBase64);
-                compagniesList.add(compagny);
-
-                final CompagnyListAdapter adapter = new CompagnyListAdapter(Result.this, R.layout.adapter_view_layout, compagniesList);
+        for(int indx=0;indx< compagnies.length;indx++) {
 
 
-                mListView.setAdapter(adapter);
+            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId ,compagnies[indx], new FirebaseCallback() {
+                @Override
+                public void onCallback() {
 
-                mListView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String imageBase64 = flights.getLogo();
+                    String startD = getIntent().getStringExtra(EXTRA_START_DATE);
+                    String returnD = getIntent().getStringExtra(EXTRA_RETURN_DATE);
+                    String price = flights.getPrice();
+                    String name_compagny = flights.getName_compagny();
+                    Toast.makeText(Result.this, "Name Compagny : " + name_compagny, Toast.LENGTH_SHORT).show();
 
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        if (user != null) {
-                            Toast.makeText(Result.this,"You are login : ",Toast.LENGTH_SHORT).show();
+                    final Compagny compagny = new Compagny(name_compagny, price, "Economique", startD, returnD, img, imageBase64);
+                    compagniesList.add(compagny);
+
+                    final CompagnyListAdapter adapter = new CompagnyListAdapter(Result.this, R.layout.adapter_view_layout, compagniesList);
+
+
+                    mListView.setAdapter(adapter);
+
+                    mListView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                Toast.makeText(Result.this, "You are login : ", Toast.LENGTH_SHORT).show();
 
                           /*  TextView start_date = view.findViewById(R.id.start_date);
                             TextView return_date = view.findViewById(R.id.return_date);
@@ -78,40 +86,42 @@ public class Result extends AppCompatActivity {
                            /* String tag_start_date = start_date.getText().toString();
                             String tag_return_date = return_date.getText().toString();
                             String tag_price = price.getText().toString();*/
-                            String tag_logo_base64 = compagniesList.get(position).getImageBase64();
-                            String tag_start_date = compagniesList.get(position).getStart_date();
-                            String tag_return_date = compagniesList.get(position).getReturn_date();
-                            String tag_price = compagniesList.get(position).getPrice();
+                                String tag_name_compagny = compagniesList.get(position).getName();
+                                String tag_logo_base64 = compagniesList.get(position).getImageBase64();
+                                String tag_start_date = compagniesList.get(position).getStart_date();
+                                String tag_return_date = compagniesList.get(position).getReturn_date();
+                                String tag_price = compagniesList.get(position).getPrice();
 
-                            Toast.makeText(Result.this,"You selected : " ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Result.this, "You selected : ", Toast.LENGTH_SHORT).show();
 
-                            // Write a message to the database
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // Write a message to the database
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-                            String rootPathUsers="/USERS/"+user.getUid()+"/MY_TRAVELS/ID_"+travelId+"/COMPAGNY/";
-                            ArrayList<DatabaseReference> myRef = new ArrayList<>();
-                            myRef.add(database.getReference(rootPathUsers));
-                            myRef.add(database.getReference(rootPathUsers+"PRICE"));
-                            myRef.add(database.getReference(rootPathUsers+"START_DATE"));
-                            myRef.add(database.getReference(rootPathUsers+"RETURN_DATE"));
-                            myRef.add(database.getReference(rootPathUsers+"Logo_B64"));
+                                String rootPathUsers = "/USERS/" + user.getUid() + "/MY_TRAVELS/ID_" + travelId + "/COMPAGNY/" + tag_name_compagny + "/";
+                                ArrayList<DatabaseReference> myRef = new ArrayList<>();
+                                myRef.add(database.getReference(rootPathUsers));
+                                myRef.add(database.getReference(rootPathUsers + "PRICE"));
+                                myRef.add(database.getReference(rootPathUsers + "START_DATE"));
+                                myRef.add(database.getReference(rootPathUsers + "RETURN_DATE"));
+                                myRef.add(database.getReference(rootPathUsers + "Logo_B64"));
 
-                            for(DatabaseReference ref : myRef) {
-                                if(ref.getPath().toString().equals(rootPathUsers+"PRICE")){
-                                    ref.setValue(tag_price);
-                                }else if(ref.getPath().toString().equals(rootPathUsers+"START_DATE")){
-                                    ref.setValue(tag_start_date);
-                                }else if(ref.getPath().toString().equals(rootPathUsers+"RETURN_DATE")){
-                                    ref.setValue(tag_return_date);
-                                }else if(ref.getPath().toString().equals(rootPathUsers+"Logo_B64")){
-                                    ref.setValue(tag_logo_base64);
+                                for (DatabaseReference ref : myRef) {
+                                    if (ref.getPath().toString().equals(rootPathUsers + "PRICE")) {
+                                        ref.setValue(tag_price);
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "START_DATE")) {
+                                        ref.setValue(tag_start_date);
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "RETURN_DATE")) {
+                                        ref.setValue(tag_return_date);
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Logo_B64")) {
+                                        ref.setValue(tag_logo_base64);
+                                    }
                                 }
                             }
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
+        }
     }
     void dateAvailable(){
         if(dateStart.after(min_compagny) && dateReturn.before(max_compagny))

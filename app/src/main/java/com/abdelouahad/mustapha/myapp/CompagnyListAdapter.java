@@ -64,10 +64,11 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         String start_date = getItem(position).getStart_date();
         String return_date= getItem(position).getReturn_date();
         ImageView imageView = getItem(position).getImageView();
+        String name_compagny = getItem(position).getName();
         String imageBase64 = getItem(position).getImageBase64();
 
         //Create the person object with the information
-        Compagny compagny = new Compagny(price,classe,start_date,return_date,imageView, imageBase64);
+        Compagny compagny = new Compagny(name_compagny,price,classe,start_date,return_date,imageView, imageBase64);
 
         //create the view result for showing the animation
         final View result;

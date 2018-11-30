@@ -32,7 +32,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MyTravels"
+            android:name=".ListMyTravels"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"

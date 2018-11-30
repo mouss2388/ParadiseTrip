@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity
         Intent intent ;
         switch (item.getItemId()) {
             case (R.id.my_travels):
-                intent = new Intent(MainActivity.this, MyTravels.class);
+                intent = new Intent(MainActivity.this, ListMyTravels.class);
                 this.startActivity(intent);
                 break;
             case (R.id.my_account):

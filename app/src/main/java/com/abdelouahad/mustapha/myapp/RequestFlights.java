@@ -16,6 +16,7 @@ public class RequestFlights {
     private String start_date;
     private String return_date;
     private String id;
+    private String name_compagny;
 
 
     public RequestFlights(){
@@ -65,7 +66,15 @@ public class RequestFlights {
         this.id = id;
     }
 
-    protected void getData(String rootPath, final FirebaseCallback firebaseCallback) {
+    public String getName_compagny() {
+        return name_compagny;
+    }
+
+    public void setName_compagny(String name_compagny) {
+        this.name_compagny = name_compagny;
+    }
+
+    protected void getData(String rootPath, final String compagny, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
         String value="";
@@ -76,18 +85,22 @@ public class RequestFlights {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value;
 
-                for (DataSnapshot destination: dataSnapshot.getChildren()) {
-                    for (DataSnapshot compagny_flight: destination.getChildren()) {
+                for (DataSnapshot compagny_flight: dataSnapshot.getChildren()) {
+                    if(compagny_flight.getKey().equals(compagny)) {
+                        value = compagny_flight.getKey();
+                        setName_compagny(value);
+                        Log.i("RequestFlights", getName_compagny());
                         for (DataSnapshot data : compagny_flight.getChildren()) {
-                            if(data.getKey().equals("price")) {
+                            if (data.getKey().equals("price")) {
                                 value = String.valueOf(data.getValue());
                                 setPrice(value);
-                            }else if(data.getKey().equals("Logo")){
+                            } else if (data.getKey().equals("Logo")) {
                                 value = String.valueOf(data.getValue());
                                 setLogo(value);
                             }
                         }
                     }
+
                 }
                 firebaseCallback.onCallback();
 
@@ -99,6 +112,4 @@ public class RequestFlights {
             }
         });
     }
-
-
 }
