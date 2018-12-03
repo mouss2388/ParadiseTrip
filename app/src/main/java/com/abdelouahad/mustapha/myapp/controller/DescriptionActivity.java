@@ -1,10 +1,10 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.util.Log;
@@ -16,10 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.abdelouahad.mustapha.myapp.R;
+import com.abdelouahad.mustapha.myapp.model.FirebaseCallback;
+import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static com.abdelouahad.mustapha.myapp.MainActivity.EXTRA_COUNTRY;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
 
 public class DescriptionActivity extends AppCompatActivity {
 

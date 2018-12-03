@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.model;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -74,7 +74,7 @@ public class RequestFlights {
         this.name_compagny = name_compagny;
     }
 
-    protected void getData(String rootPath, final String compagny, final FirebaseCallback firebaseCallback) {
+    public void getData(String rootPath, final String compagny, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
         String value="";

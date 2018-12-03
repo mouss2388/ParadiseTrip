@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.abdelouahad.mustapha.myapp.R;
+import com.abdelouahad.mustapha.myapp.model.Compagny;
+import com.abdelouahad.mustapha.myapp.model.FirebaseCallback;
+import com.abdelouahad.mustapha.myapp.model.RequestFlights;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -17,10 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.abdelouahad.mustapha.myapp.ChooseDateActivity.EXTRA_RETURN_DATE;
-import static com.abdelouahad.mustapha.myapp.ChooseDateActivity.EXTRA_START_DATE;
-import static com.abdelouahad.mustapha.myapp.MainActivity.COMPANIES_AVAILABLE;
-import static com.abdelouahad.mustapha.myapp.MainActivity.EXTRA_COUNTRY;
+import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_RETURN_DATE;
+import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_START_DATE;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.COMPANIES_AVAILABLE;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
 
 
 public class Result extends AppCompatActivity {

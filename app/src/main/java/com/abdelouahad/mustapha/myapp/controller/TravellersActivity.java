@@ -1,9 +1,11 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
+
+import com.abdelouahad.mustapha.myapp.R;
 
 public class TravellersActivity extends AppCompatActivity {
 

@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".LoginActivity"
+            android:name=".controller.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -28,29 +28,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ListMyTravels"
+            android:name=".controller.ListMyTravels"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".controller.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UpdateActivity"
+            android:name=".controller.UpdateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TravellersActivity"
+            android:name=".controller.TravellersActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DescriptionActivity"
+            android:name=".controller.DescriptionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ChooseDateActivity"
+            android:name=".controller.ChooseDateActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ResetPsswordActivity" />
-        <activity android:name=".Result"></activity>
+        <activity android:name=".controller.ResetPsswordActivity" />
+        <activity android:name=".controller.Result"></activity>
     </application>
 
 </manifest>

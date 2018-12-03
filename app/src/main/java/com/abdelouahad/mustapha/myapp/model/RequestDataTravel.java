@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.model;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -40,7 +40,7 @@ public class RequestDataTravel {
 
 
 
-    protected void getData(String rootPath,final FirebaseCallback firebaseCallback) {
+    public void getData(String rootPath, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
 
@@ -77,7 +77,7 @@ public class RequestDataTravel {
         });
     }
 
-    private void getSomeData(String key, String value){
+    public void getSomeData(String key, String value){
         for (String field: getLabel()){
             Log.e("RequestDataTravel In", field);
 
@@ -159,7 +159,7 @@ public class RequestDataTravel {
         }
     }
 
-    protected void getAllData(String key,String value){
+    public void getAllData(String key,String value){
         assert key != null;
         switch (key) {
             case "Id":
@@ -193,7 +193,7 @@ public class RequestDataTravel {
 
     }
 
-    protected ArrayList<String> splitRequest(String request){
+    public ArrayList<String> splitRequest(String request){
 
         ArrayList<String> arrayReq= new ArrayList<>();
         if(request.contains("+")) {
@@ -207,100 +207,100 @@ public class RequestDataTravel {
     }
 
 
-    protected int getExtractData() {
+    public int getExtractData() {
         return extractData;
     }
 
-    protected void setExtractData(int extractData) {
+    public void setExtractData(int extractData) {
         this.extractData = extractData;
     }
 
-    protected String getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    protected void setCountry(String country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    protected ArrayList<String> getLabel() {
+    public ArrayList<String> getLabel() {
         return label;
     }
 
-    protected void setLabel(ArrayList<String> label) {
+    public void setLabel(ArrayList<String> label) {
         this.label = label;
     }
 
-    protected Boolean getBoolAllData() {
+    public Boolean getBoolAllData() {
         return boolAllData;
     }
 
-    protected void setLabel(Boolean boolAllData) {
+    public void setLabel(Boolean boolAllData) {
         this.boolAllData = boolAllData;
     }
 
 
-    protected String getBanner() {
+    public String getBanner() {
         return banner;
     }
 
-    protected void setBanner(String banner) {
+    public void setBanner(String banner) {
         this.banner = banner;
     }
 
-    protected String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    protected void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    protected String getImg_str_1() {
+    public String getImg_str_1() {
         return img_str_1;
     }
 
-    protected void setImg_str_1(String img_str_1) {
+    public void setImg_str_1(String img_str_1) {
         this.img_str_1 = img_str_1;
     }
 
-    protected String getImg_str_2() {
+    public String getImg_str_2() {
         return img_str_2;
     }
 
-    protected void setImg_str_2(String img_str_2) {
+    public void setImg_str_2(String img_str_2) {
         this.img_str_2 = img_str_2;
     }
 
-    protected String getImg_str_3() {
+    public String getImg_str_3() {
         return img_str_3;
     }
 
-    protected void setImg_str_3(String img_str_3) {
+    public void setImg_str_3(String img_str_3) {
         this.img_str_3 = img_str_3;
     }
 
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
-    protected void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    protected String getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    protected void setPrice(String price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    protected int getRate() {
+    public int getRate() {
         return rate;
     }
 
-    protected void setRate(int rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 }

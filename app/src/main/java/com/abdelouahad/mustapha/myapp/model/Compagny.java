@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.model;
 
 import android.widget.ImageView;
 

@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.abdelouahad.mustapha.myapp.R;
+import com.abdelouahad.mustapha.myapp.model.Compagny;
 
 import java.util.ArrayList;
 

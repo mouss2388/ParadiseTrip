@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.abdelouahad.mustapha.myapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -28,8 +29,8 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.abdelouahad.mustapha.myapp.LoginActivity.mPreferences;
-import static com.abdelouahad.mustapha.myapp.LoginActivity.key_passwrd;
+import static com.abdelouahad.mustapha.myapp.controller.LoginActivity.key_passwrd;
+import static com.abdelouahad.mustapha.myapp.controller.LoginActivity.mPreferences;
 
 
 

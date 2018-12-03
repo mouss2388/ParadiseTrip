@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -24,13 +24,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.abdelouahad.mustapha.myapp.R;
+import com.abdelouahad.mustapha.myapp.model.FirebaseCallback;
+import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.abdelouahad.mustapha.myapp.LoginActivity.key_passwrd;
-import static com.abdelouahad.mustapha.myapp.LoginActivity.mPreferences;
+import static com.abdelouahad.mustapha.myapp.controller.LoginActivity.key_passwrd;
+import static com.abdelouahad.mustapha.myapp.controller.LoginActivity.mPreferences;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

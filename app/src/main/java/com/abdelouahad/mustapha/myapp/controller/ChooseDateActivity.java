@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.controller;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -13,7 +13,9 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import static com.abdelouahad.mustapha.myapp.MainActivity.EXTRA_COUNTRY;
+import com.abdelouahad.mustapha.myapp.R;
+
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
 
 public class ChooseDateActivity extends AppCompatActivity {
 

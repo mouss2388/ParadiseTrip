@@ -1,4 +1,4 @@
-package com.abdelouahad.mustapha.myapp;
+package com.abdelouahad.mustapha.myapp.model;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
@@ -69,7 +69,7 @@ public class RequestMyTravels {
         this.id = id;
     }
 
-    protected void getData(String rootPath, final String name_compagny_target, final FirebaseCallback firebaseCallback) {
+    public void getData(String rootPath, final String name_compagny_target, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
         String value="";
