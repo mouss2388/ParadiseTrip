@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import com.abdelouahad.mustapha.myapp.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
 
 public class ChooseDateActivity extends AppCompatActivity {
@@ -23,6 +27,7 @@ public class ChooseDateActivity extends AppCompatActivity {
     String startDate, returnDate,travelId;
     public static String EXTRA_START_DATE="EXTRA_START_DATE" ;
     public static String EXTRA_RETURN_DATE = "EXTRA_RETURN_DATE";
+    DatePickerDialog datePickerDialogStart,  datePickerDialogEnd;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -46,7 +51,7 @@ public class ChooseDateActivity extends AppCompatActivity {
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 
-        ImageButton selectDateStart = findViewById(R.id.icn_date_from);
+        final ImageButton selectDateStart = findViewById(R.id.icn_date_from);
         ImageButton selectDateReturn = findViewById(R.id.icn_date_to);
 
 
@@ -85,18 +90,18 @@ public class ChooseDateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(ChooseDateActivity.this,
+                datePickerDialogStart= new DatePickerDialog(ChooseDateActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                startDate= String.valueOf(day + "/" + month + "/" + year);
-
+                                startDate= String.valueOf(day + "/" + (month+1) + "/" + year);
                                 Toast.makeText(ChooseDateActivity.this, startDate, Toast.LENGTH_LONG).show();
 
                             }
                         }, year, month, day);
 
-                datePickerDialog.show();
+                datePickerDialogStart.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialogStart.show();
 
 
             }
@@ -105,18 +110,21 @@ public class ChooseDateActivity extends AppCompatActivity {
         selectDateReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(ChooseDateActivity.this,
+                datePickerDialogEnd = new DatePickerDialog(ChooseDateActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                returnDate = String.valueOf(day + "/" + month + "/" + year);
+                                returnDate = String.valueOf(day + "/" + (month+1) + "/" + year);
 
                                 Toast.makeText(ChooseDateActivity.this, returnDate, Toast.LENGTH_LONG).show();
 
                             }
                         }, year, month, day);
 
-                datePickerDialog.show();
+
+                datePickerDialogEnd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialogEnd.show();
+
             }
         });
 
