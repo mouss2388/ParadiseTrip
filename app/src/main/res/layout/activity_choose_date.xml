@@ -8,7 +8,6 @@
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:gravity="center"
     >
 
     <TextView
@@ -17,13 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="BAHAMAS"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorDark"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold|italic"
+        android:textSize="23dp"
         />
 
     <LinearLayout
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center"
+        >
         <Spinner
             android:id="@+id/depart"
             android:layout_width="wrap_content"
@@ -31,6 +35,9 @@
             android:entries="@array/depart_array"
             android:prompt="@string/depart" />
 
+        <Space
+            android:layout_width="25dp"
+            android:layout_height="wrap_content" />
         <Spinner
 
             android:id="@+id/come"
@@ -42,28 +49,54 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical">
+        android:gravity="center">
 
+        <TextView
+            android:id="@+id/start_date_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorDark"
+            android:text="xx/xx/xxxx"
+            android:visibility="invisible"
+           />
         <ImageButton
             android:id="@+id/icn_date_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/icn_date_from"/>
+        <Space
+            android:layout_width="12.5dp"
+            android:layout_height="wrap_content" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/separator"/>
+        <Space
+            android:layout_width="12.5dp"
+            android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/icn_date_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/icn_date_to"/>
+        <TextView
+            android:id="@+id/return_date_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorDark"
+            android:text="xx/xx/xxxx"
+            android:visibility="invisible"
+
+            />
+
     </LinearLayout>
 
     <Button
+        android:layout_marginTop="50dp"
         style="@style/AppTheme.ButtonCustom"
         android:id="@+id/classes"
         android:text="Voyageurs/Classes" />
