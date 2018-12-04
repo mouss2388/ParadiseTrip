@@ -35,12 +35,14 @@
             />
 
         <ImageButton
+            android:background="@color/colorWhite"
             android:id="@+id/panorama_background"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:contentDescription="Image  background"
-            android:src="@drawable/panorama_beach"
+            android:src="@drawable/panorama"
+            android:scaleType="fitXY"
             android:visibility="visible" />
 
     </RelativeLayout>

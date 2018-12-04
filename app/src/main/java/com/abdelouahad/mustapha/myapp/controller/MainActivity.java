@@ -182,8 +182,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        final RequestDataTravel[] info = new RequestDataTravel[5];
-        for(int i=0; i<1; i++){
+        final RequestDataTravel[] info = new RequestDataTravel[10];
+        for(int i=0; i<10; i++){
             info[i] = new RequestDataTravel("Id+Banner");
             final int finalI = i;
             info[i].getData("TRAVEL_"+(i+1),new FirebaseCallback() {

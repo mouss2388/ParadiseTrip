@@ -3,8 +3,15 @@ package com.abdelouahad.mustapha.myapp.controller;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.util.Log;
@@ -118,14 +125,32 @@ public class DescriptionActivity extends AppCompatActivity {
             }
             InputStream inputStream  = new ByteArrayInputStream(decodedString);
             Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
-            image[i].setImageBitmap(bitmap);
+            Bitmap bitmapRounded=roundCornerImage(bitmap,100f);
+            image[i].setImageBitmap(bitmapRounded);
 
-            image[i].setPadding(2, 10, 8, 2);
-
-            int size_able_layout = layout.getLayoutParams().height;
-            image[i].getLayoutParams().height = size_able_layout;
-            image[i].getLayoutParams().width = size_able_layout;
-            image[i].requestLayout();
         }
+    }
+
+    public Bitmap roundCornerImage(Bitmap raw, float round) {
+        int width = raw.getWidth();
+        int height = raw.getHeight();
+        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(result);
+        canvas.drawARGB(0, 0, 0, 0);
+
+        final Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor("#000000"));
+
+        final Rect rect = new Rect(0, 0, width, height);
+        final RectF rectF = new RectF(rect);
+
+        canvas.drawRoundRect(rectF, round, round, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        //paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.R));
+        canvas.drawBitmap(raw, rect, rect, paint);
+
+        return result;
     }
 }
