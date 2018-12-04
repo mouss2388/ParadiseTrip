@@ -53,10 +53,8 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:theme="@style/AppTheme.ButtonCustom"
+        style="@style/AppTheme.ButtonCustom"
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Se connecter" />
 
     <TextView

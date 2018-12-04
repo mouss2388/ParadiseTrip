@@ -99,18 +99,14 @@
 
     <Button
         android:layout_marginTop="10dp"
-        android:theme="@style/AppTheme.ButtonCustom"
+        style="@style/AppTheme.ButtonCustom"
         android:id="@+id/btn_update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Mise à jour"
-        android:textAllCaps="false"/>
+        />
     <Button
         android:layout_marginTop="5dp"
-        android:theme="@style/AppTheme.ButtonCustom"
+        style="@style/AppTheme.ButtonCustom"
         android:id="@+id/btn_delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Supprimer Compte"
-        android:textAllCaps="false"/>
+        />
 </LinearLayout>

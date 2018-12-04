@@ -8,23 +8,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <!--android:background="@drawable/btn_corner_float"-->
+
         <Button
+            style="@style/AppTheme.BtnFloat"
             android:id="@+id/btn_description"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:background="@drawable/btn_corner_float"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Choisir"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/colorWhite"
-            android:textSize="13sp"
-            android:alpha="0.60"
-            android:textAllCaps="false"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            app:fontFamily="sans-serif-condensed"
-            />
+             />
 
         <ImageButton
             android:background="@color/colorWhite"
@@ -34,7 +25,7 @@
             android:layout_alignParentTop="true"
             android:contentDescription="Image  background"
             android:scaleType="fitXY"
-            android:src="@drawable/panorama_beach" />
+            android:src="@color/colorWhite" />
 
     </RelativeLayout>
 
