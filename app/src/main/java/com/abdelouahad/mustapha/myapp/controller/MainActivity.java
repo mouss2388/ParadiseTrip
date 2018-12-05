@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity
     private int[] mImgIds;
     private LayoutInflater mInflater;
     private Boolean login_state= false;
-    protected Button destination;
+    protected Button yourDestination;
     private TextView name, email;
     public static String EXTRA_COUNTRY="EXTRA_COUNTRY";
     public static final String[] COMPANIES_AVAILABLE = {"AirCaraibes","EasyJet"};
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         name= headerLayout.findViewById(R.id.username_data);
         email = headerLayout.findViewById(R.id.email_data);
 
-        destination = findViewById(R.id.yourDestination);
+        yourDestination = findViewById(R.id.yourDestination);
 
 
         //crée la gallerie des destinations tendence
@@ -69,21 +70,12 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       /* FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
-        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);*/
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
 
-        //drawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -110,16 +102,16 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        // toggle.syncState();
+         toggle.syncState();
 
 
 
 
-        ///boutton Votre destination Onclick
-        destination.setOnClickListener(new View.OnClickListener() {
+        ///boutton Votre yourDestination Onclick
+        yourDestination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChooseDateActivity.class);
+                Intent intent = new Intent(MainActivity.this, ChooseDestination.class);
                 MainActivity.this.startActivity(intent);
 
             }

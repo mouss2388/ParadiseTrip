@@ -50,7 +50,9 @@
             android:name=".controller.ChooseDateActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".controller.ResetPsswordActivity" />
-        <activity android:name=".controller.Result"></activity>
+        <activity android:name=".controller.Result" />
+        <activity android:name=".controller.SearchDestinationActivity" />
+        <activity android:name=".controller.ChooseDestination"></activity>
     </application>
 
 </manifest>

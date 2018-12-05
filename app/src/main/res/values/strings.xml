@@ -35,6 +35,8 @@
         <item>Paris-Orly</item>
     </string-array>
 
+    <string name="destination">Destination</string>
+
     <string name="come">Arrivé?</string>
     <string-array name="come_array">
         <item>Paris-CDG</item>

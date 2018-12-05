@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/colorMain"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".controller.ChooseDestination">
+
+    <LinearLayout
+        android:id="@+id/listDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Votre destination:"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold|italic" />
+
+        <Spinner
+
+            android:id="@+id/destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/destination" />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/validate"
+        style="@style/AppTheme.ButtonCustom"
+        android:layout_below="@+id/listDestination"
+        android:layout_marginTop="50dp"
+        android:text="je fonce !"
+
+        />
+
+
+</RelativeLayout>

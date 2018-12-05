@@ -108,7 +108,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
         for(int i=0;i<3;i++)
         {
-            Log.i("showImgTravel", request.getImg_str_1());
+//            Log.i("showImgTravel", request.getImg_str_1());
             switch (i){
                 case 0:
                     decodedString = Base64.decode(String.valueOf(request.getImg_str_1()), Base64.NO_WRAP);
