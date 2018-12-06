@@ -1,16 +1,19 @@
 package com.abdelouahad.mustapha.myapp.controller;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -102,7 +105,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-         toggle.syncState();
+        toggle.syncState();
 
 
 
@@ -183,7 +186,7 @@ public class MainActivity extends AppCompatActivity
                 public void onCallback() {
                     Log.i("DATA INFO"," obj:"+ info[finalI].getId());
                     Log.i("DATA INFO"," obj:"+ info[finalI].getBanner());
-                  //  Log.i("DATA INFO"," obj:"+ info[finalI].getDescription());
+                    //  Log.i("DATA INFO"," obj:"+ info[finalI].getDescription());
 
 
                     byte[] decodedString = Base64.decode(String.valueOf(info[finalI].getBanner()), Base64.DEFAULT);
@@ -271,7 +274,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            displayDialog();
         }
     }
 
@@ -325,6 +328,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this,
                         "push on logout",
                         Toast.LENGTH_LONG).show();
+                displayDialog();
                 break;
 
         }
@@ -392,4 +396,26 @@ public class MainActivity extends AppCompatActivity
         Log.i("LOG_DETECTED MaintActivity","onDestroy");
     }
 
+    protected void displayDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Etes vous sûr de vouloir vous déconnecter")
+                .setTitle("Information");
+        builder.setIcon(R.drawable.logout);
+
+// Add the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                 finish();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+
+
+// Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }
