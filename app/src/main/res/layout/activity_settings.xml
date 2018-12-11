@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.Settings"
+    android:orientation="vertical">
+
+
+    <CheckBox
+        android:layout_marginTop="50dp"
+        android:id="@+id/chckBxSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jouer son"
+        />
+
+    <CheckBox
+        android:layout_marginTop="50dp"
+        android:id="@+id/chckBxVibrator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activer vibration"/>
+
+    <Switch
+        android:layout_marginTop="50dp"
+
+        android:id="@+id/switchNotif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification"/>
+
+
+
+    <Switch
+        android:layout_marginTop="50dp"
+
+        android:id="@+id/switchNight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mode nuit"
+        />
+
+
+</LinearLayout>
