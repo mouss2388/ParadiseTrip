@@ -132,13 +132,19 @@ public class ChooseDateActivity extends AppCompatActivity {
                             }, year, month, day);
 
 
-                   /* long datePicjerD = datePickerDialogStart.getDatePicker().getMonth();
+                    long datePicjerD = datePickerDialogStart.getDatePicker().getMonth();
                     int dayP=datePickerDialogStart.getDatePicker().getDayOfMonth();
                     int monthP= datePickerDialogStart.getDatePicker().getMonth();
-                    int yearP= datePickerDialogStart.getDatePicker().getYear();*/
+                    int yearP= datePickerDialogStart.getDatePicker().getYear();
+                    long date = datePickerDialogStart.getDatePicker().getMinDate();
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(datePickerDialogStart.getDatePicker().getYear(), datePickerDialogStart.getDatePicker().getMonth(), datePickerDialogStart.getDatePicker().getDayOfMonth(),
+                            0, 0, 0);
+                    long startTime = calendar.getTimeInMillis();
 
 
-                    datePickerDialogEnd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                    datePickerDialogEnd.getDatePicker().setMinDate(startTime);
 
 
                     datePickerDialogEnd.show();

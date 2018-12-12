@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
 
     public static Boolean NOTIF_ENABLE=false, SOUND_ENABLED= false, VIBRATOR_ENABLE= false, NIGHT_ENABLE=false;
 
+    private Toolbar toolbar;
 
     public static final String[] COMPANIES_AVAILABLE = {"AirCaraibes","EasyJet"};
     @Override
@@ -73,9 +74,9 @@ public class MainActivity extends AppCompatActivity
         initData();
         initView();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
-        //toolbar.setBackgroundResource(R.color.colorBlack);
+
 
         setSupportActionBar(toolbar);
 
@@ -394,6 +395,9 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         Log.i("LOG_DETECTED MaintActivity","onResume");
+        if(NIGHT_ENABLE) {
+            //toolbar.setBackgroundResource(R.color.colorBlack);
+        }
         //userSignIn();
     }
 
