@@ -21,20 +21,25 @@ public class RequestDataTravel {
 
     private Boolean boolAllData;
     private ArrayList<String> label;
+    private ArrayList<String> airports;
 
     private int id;
-    private int extractData;
+    private int numberExtractData;
     private String price;
     private int rate;
 
+
+
     public RequestDataTravel() {
         this.boolAllData=true;
+        this.airports=new ArrayList<>();
     }
 
 
 
     public RequestDataTravel(String label){
         this.label=splitRequest(label);
+        this.airports=new ArrayList<>();
         this.boolAllData=false;
     }
 
@@ -62,9 +67,11 @@ public class RequestDataTravel {
                         getAllData(key,value);
 
                     }else{
+
+                        //Mettre le for ici pour optimiser
                         Log.e("RequestDataTravel ", "HERE");
                         getSomeData(key,value);
-                        if(getExtractData()<=0)
+                        if(getNumberExtractData()<=0)
                             break;
                     }
                 }
@@ -79,7 +86,9 @@ public class RequestDataTravel {
 
     public void getSomeData(String key, String value){
         for (String field: getLabel()){
-            Log.e("RequestDataTravel In", field);
+           // Log.e("RequestDataTravel In", field);
+            if(key.contains("airport_"))
+                Log.e("Request airport", key+" "+value);
 
             switch (field) {
 
@@ -88,7 +97,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setId(Integer.parseInt(value));
                         Log.e("RequestDataTravel Id", String.valueOf(getId()));
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Country":
@@ -96,7 +105,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setCountry(value);
                         Log.e("RequestDataTravel ", getCountry());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Banner":
@@ -104,7 +113,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setBanner(value);
                         Log.e("RequestDataTravel", getBanner());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Description":
@@ -112,7 +121,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setDescription(value);
                         Log.e("RequestDataTravel", getDescription());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Price":
@@ -120,7 +129,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setPrice(value);
                         Log.e("RequestDataTravel price", getPrice());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Rate":
@@ -128,7 +137,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setRate(Integer.parseInt(value));
                         Log.e("RequestDataTravel Rate", String.valueOf(getRate()));
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Img_1":
@@ -136,7 +145,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setImg_str_1(value);
                         Log.e("RequestDataTravel Img_1", getImg_str_1());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Img_2":
@@ -144,7 +153,7 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setImg_str_2(value);
                         Log.e("RequestDataTravel Img_2", getImg_str_2());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
                 case "Img_3":
@@ -152,9 +161,15 @@ public class RequestDataTravel {
                     if (key.equals(field)) {
                         setImg_str_3(value);
                         Log.e("RequestDataTravel Img_3", getImg_str_3());
-                        setExtractData(getExtractData()-1);
+                        setNumberExtractData(getNumberExtractData()-1);
                     }
                     break;
+
+                case "Airports":
+                    assert key != null;
+                    if(key.contains("airport_")) {
+                        this.airports.add(value);
+                    }
             }
         }
     }
@@ -202,17 +217,17 @@ public class RequestDataTravel {
         }else{
             arrayReq.add(request);
         }
-        setExtractData(arrayReq.size());
+        setNumberExtractData(arrayReq.size());
         return arrayReq;
     }
 
 
-    public int getExtractData() {
-        return extractData;
+    public int getNumberExtractData() {
+        return numberExtractData;
     }
 
-    public void setExtractData(int extractData) {
-        this.extractData = extractData;
+    public void setNumberExtractData(int numberExtractData) {
+        this.numberExtractData = numberExtractData;
     }
 
     public String getCountry() {
@@ -302,5 +317,13 @@ public class RequestDataTravel {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public ArrayList<String> getAirports() {
+        return airports;
+    }
+
+    public void setAirports(ArrayList<String> airports) {
+        this.airports = airports;
     }
 }

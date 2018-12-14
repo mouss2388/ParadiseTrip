@@ -11,16 +11,15 @@
     >
 
     <TextView
-        android:gravity="center"
         android:id="@+id/destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BAHAMAS"
-        android:textColor="@color/colorDark"
         android:layout_marginTop="100dp"
-        android:textStyle="bold|italic"
+        android:gravity="center"
+        android:text="Country"
+        android:textColor="@color/colorDark"
         android:textSize="23dp"
-        />
+        android:textStyle="bold|italic" />
 
 
     <LinearLayout
@@ -30,8 +29,9 @@
         android:gravity="center"
         android:orientation="horizontal"
         >
+
         <Spinner
-            android:id="@+id/depart"
+            android:id="@+id/start_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/depart_array"
@@ -40,9 +40,10 @@
         <Space
             android:layout_width="25dp"
             android:layout_height="wrap_content" />
+
         <Spinner
 
-            android:id="@+id/come"
+            android:id="@+id/return_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/come_array"

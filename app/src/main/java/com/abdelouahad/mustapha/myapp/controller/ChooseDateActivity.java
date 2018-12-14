@@ -9,17 +9,21 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abdelouahad.mustapha.myapp.R;
+import com.abdelouahad.mustapha.myapp.model.FirebaseCallback;
+import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
 
@@ -31,6 +35,7 @@ public class ChooseDateActivity extends AppCompatActivity {
     public static String EXTRA_RETURN_DATE = "EXTRA_RETURN_DATE";
     DatePickerDialog datePickerDialogStart,  datePickerDialogEnd;
     TextView start_date_info, return_date_info;
+    TextView country_name;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -46,6 +51,69 @@ public class ChooseDateActivity extends AppCompatActivity {
 
         btn_classes = findViewById(R.id.classes);
         btn_search = findViewById(R.id.search);
+        country_name = findViewById(R.id.destination);
+
+        final Spinner start_spinner = findViewById(R.id.start_spinner);
+        final Spinner return_spinner = findViewById(R.id.return_spinner);
+
+
+        final RequestDataTravel info = new RequestDataTravel("Country+Airports");
+        final ArrayList<String>[] listAirports = new ArrayList[1];
+        final List<String> spinnerArray = new ArrayList<>();
+
+
+
+        info.getData("TRAVEL_" +travelId, new FirebaseCallback() {
+            @Override
+            public void onCallback() {
+                country_name.setText("Destination: "+info.getCountry());
+                listAirports[0] = info.getAirports();
+
+                for (Object airports: listAirports[0]){
+                    Log.e("TAG_DATE", airports.toString());
+                    spinnerArray.add(airports.toString());
+
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                        ChooseDateActivity.this, android.R.layout.simple_spinner_item, spinnerArray);
+                /////
+                // (4) set the adapter on the spinner
+                start_spinner.setAdapter(adapter);
+                return_spinner.setAdapter(adapter);
+
+                start_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedItemText = (String) parent.getItemAtPosition(position);
+                        // Notify the selected item text
+                        Toast.makeText
+                                (getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT)
+                                .show();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+                return_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedItemText = (String) parent.getItemAtPosition(position);
+                        // Notify the selected item text
+                        Toast.makeText
+                                (getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT)
+                                .show();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+            }});
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
