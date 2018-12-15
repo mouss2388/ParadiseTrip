@@ -82,6 +82,7 @@ public class ChooseDateActivity extends AppCompatActivity {
                 start_spinner.setAdapter(adapter);
                 return_spinner.setAdapter(adapter);
 
+
                 start_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
