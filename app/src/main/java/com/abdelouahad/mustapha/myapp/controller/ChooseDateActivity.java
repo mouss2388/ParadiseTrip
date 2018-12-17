@@ -186,7 +186,7 @@ public class ChooseDateActivity extends AppCompatActivity {
         selectDateReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(datePickerDialogStart!=null) {
+                if(datePickerDialogStart!=null && !start_date_info.getText().equals("xx/xx/xxxx")) {
                     datePickerDialogEnd = new DatePickerDialog(ChooseDateActivity.this,
                             new DatePickerDialog.OnDateSetListener() {
                                 @Override
