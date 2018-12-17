@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText password;
     private Button register, delete;
 
-    String mEmail = "colomb1506@yopmail.com";
+    String mEmail = "colomb1451@yopmail.com";
     String mPassword = "passw0rd";
 
     private FirebaseAuth mAuth;
@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void deleteUser(){
         AuthCredential credential = EmailAuthProvider
-                .getCredential("colomb1506@yopmail.com", "passw0rd");
+                .getCredential("colomb1451@yopmail.com", "passw0rd");
 
         final FirebaseUser user = mAuth.getCurrentUser();
 

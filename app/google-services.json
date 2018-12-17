@@ -1,43 +1,27 @@
 {
   "project_info": {
-    "project_number": "136621419575",
-    "firebase_url": "https://projecthotel-221316.firebaseio.com",
-    "project_id": "projecthotel-221316",
-    "storage_bucket": "projecthotel-221316.appspot.com"
+    "project_number": "774868390935",
+    "firebase_url": "https://paradisetrip-fe470.firebaseio.com",
+    "project_id": "paradisetrip-fe470",
+    "storage_bucket": "paradisetrip-fe470.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:136621419575:android:e10c6409154c17b6",
+        "mobilesdk_app_id": "1:774868390935:android:e10c6409154c17b6",
         "android_client_info": {
           "package_name": "com.abdelouahad.mustapha.myapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "136621419575-u4vsi23sajopk9u02g1gno6ibjmqt8nv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.abdelouahad.mustapha.myapp",
-            "certificate_hash": "12e120741dee5bc55669cb55645a39a208115ff3"
-          }
-        },
-        {
-          "client_id": "136621419575-npfh3u37at1e1hrd9o1o41hdu5ma3579.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.abdelouahad.mustapha.myapp",
-            "certificate_hash": "0d9eb071d3055decf8191f38ac8782f95e9df825"
-          }
-        },
-        {
-          "client_id": "136621419575-9smlo5rd7ognt936kleejmamfqju779p.apps.googleusercontent.com",
+          "client_id": "774868390935-mvd5l32qljlc6jopdbrpfp70t2pu607l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA9yXDapwVewYnYf_YgN6FA-NGAZbmQ-YA"
+          "current_key": "AIzaSyCNcFg7IqYazZtAwshZdOXMavXjB9LgTtQ"
         }
       ],
       "services": {
@@ -45,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "136621419575-9smlo5rd7ognt936kleejmamfqju779p.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

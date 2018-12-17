@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doLogin() {
-        email="colomb1506@yopmail.com";
+        email="colomb1451@yopmail.com";
         password="passw0rd";
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
