@@ -332,6 +332,8 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this,
                         "push on promotions",
                         Toast.LENGTH_LONG).show();
+                intent = new Intent(MainActivity.this, Promotions.class);
+                this.startActivity(intent);
                 break;
             case (R.id.logout):
                 Toast.makeText(MainActivity.this,

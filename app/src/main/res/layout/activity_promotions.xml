@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.Promotions"
+    android:orientation="vertical"
+    android:background="@color/colorDark"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/promo_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <ImageView
+                android:id="@+id/promo_2"
+                android:layout_weight="50"
+                android:minWidth="100dp"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp" />
+
+            <ImageView
+                android:id="@+id/promo_3"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/promo_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <ImageView
+            android:id="@+id/promo_5"
+            android:layout_width="wrap_content"
+            android:layout_height="290dp"
+            />
+
+        <ImageView
+            android:id="@+id/promo_6"
+            android:layout_width="wrap_content"
+            android:layout_height="290dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/promo_7"
+            android:layout_width="wrap_content"
+            android:layout_height="290dp"
+            />
+
+
+
+        <ImageView
+            android:id="@+id/promo_8"
+            android:layout_width="wrap_content"
+            android:layout_height="290dp"
+            />
+
+        <ImageView
+            android:id="@+id/promo_9"
+            android:layout_height="290dp"
+            android:layout_width="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/promo_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
+    </LinearLayout>
+
+
+
+</ScrollView>
