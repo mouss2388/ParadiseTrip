@@ -9,10 +9,12 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.abdelouahad.mustapha.myapp.R;
@@ -31,6 +33,16 @@ public class Promotions extends AppCompatActivity {
         final RequestPromotions [] reqPromo = new RequestPromotions[imgView.length];
 
 
+        // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+            ActionBar actionbar = getSupportActionBar();
+            //Disable Title ToolBar
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.promotions);
+            actionbar.setTitle(title);            //Display Arrow Back
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowHomeEnabled(true);
+        }
 
         for (int i =0;i<imgView.length;i++) {
             int resourceId = this.getResources().getIdentifier("promo_"+(i+1), "id", this.getPackageName());
@@ -71,5 +83,16 @@ public class Promotions extends AppCompatActivity {
         canvas.drawBitmap(raw, rect, rect, paint);
 
         return result;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

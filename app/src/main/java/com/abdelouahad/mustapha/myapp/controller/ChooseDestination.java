@@ -2,8 +2,10 @@ package com.abdelouahad.mustapha.myapp.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,6 +37,16 @@ public class ChooseDestination extends AppCompatActivity {
         // (2) create a simple static list of strings
         final List<String> spinnerArray = new ArrayList<>();
 
+        if (getSupportActionBar() != null) {
+            ActionBar actionbar = getSupportActionBar();
+            //Disable Title ToolBar
+            actionbar.setDisplayShowTitleEnabled(true);
+            //Display Arrow Back
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowHomeEnabled(true);
+            String title = getResources().getString(R.string.your_destination);
+            actionbar.setTitle(title);
+        }
         for (int i = 0; i < 10; i++) {
             info[i] = new RequestDataTravel("Country+Id");
             final int finalI = i;
@@ -87,5 +99,16 @@ public class ChooseDestination extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

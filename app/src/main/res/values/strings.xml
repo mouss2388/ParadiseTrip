@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">My App</string>
+    <string name="app_name">ParadiseTrip</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -31,17 +31,32 @@
 
     <string name="depart">Départ?</string>
     <string-array name="depart_array">
-        <item>Paris-CDG</item>
-        <item>Paris-Orly</item>
+        <item>Paris Charles-De-Gaulle (CDG)</item>
+        <item>Paris Orly (ORY)</item>
+        <item>Paris Beauvais (BVA)</item>
     </string-array>
 
     <string name="destination">Destination</string>
 
     <string name="come">Arrivé?</string>
     <string-array name="come_array">
-        <item>Paris-CDG</item>
-        <item>Paris-Orly</item>
+        <item>Paris Charles-De-Gaulle (CDG)</item>
+        <item>Paris Orly (ORY)</item>
+        <item>Paris Beauvais (BVA)</item>
+
     </string-array>
     <string name="title_activity_images_from_firebase">ImagesFromFirebase</string>
+
+
+    <string name="my_travels">Mes Voyages</string>
+    <string name="account">Mon Compte</string>
+    <string name="settings">Paramètres</string>
+    <string name="promotions">Promotions</string>
+    <string name="your_destination">Votre Destination</string>
+    <string name="config_travel">Paramètre du Vol</string>
+    <string name="flights_available">Vols Disponibles</string>
+    <string name="register">Inscription</string>
+    <string name="reset_password">Récupérer votre mot de passe</string>
+    <string name="travellers_classes">Voyageurs / Classe</string>
 
 </resources>

@@ -6,8 +6,10 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,6 +59,18 @@ public class ChooseDateActivity extends AppCompatActivity {
         final Spinner return_spinner = findViewById(R.id.return_spinner);
 
 
+        if (getSupportActionBar() != null) {
+            ActionBar actionbar = getSupportActionBar();
+            //Disable Title ToolBar
+            actionbar.setDisplayShowTitleEnabled(true);
+            //Display Arrow Back
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowHomeEnabled(true);
+            String title = getResources().getString(R.string.config_travel);
+            actionbar.setTitle(title);
+        }
+
+
         final RequestDataTravel info = new RequestDataTravel("Country+Airports");
         final ArrayList<String>[] listAirports = new ArrayList[1];
         final List<String> spinnerArray = new ArrayList<>();
@@ -79,11 +93,11 @@ public class ChooseDateActivity extends AppCompatActivity {
                         ChooseDateActivity.this, android.R.layout.simple_spinner_item, spinnerArray);
                 /////
                 // (4) set the adapter on the spinner
-                start_spinner.setAdapter(adapter);
+                //start_spinner.setAdapter(adapter);
                 return_spinner.setAdapter(adapter);
 
 
-                start_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+              /*  start_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String selectedItemText = (String) parent.getItemAtPosition(position);
@@ -97,7 +111,7 @@ public class ChooseDateActivity extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> parent) {
 
                     }
-                });
+                });*/
                 return_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -149,7 +163,10 @@ public class ChooseDateActivity extends AppCompatActivity {
                     intent.putExtra(EXTRA_START_DATE, startDate);
                     intent.putExtra(EXTRA_COUNTRY, travelId);
 
-                    ChooseDateActivity.this.startActivity(intent);
+                    int airportStart = start_spinner.getSelectedItemPosition();
+                    Toast.makeText(ChooseDateActivity.this, String.valueOf(start_spinner.getSelectedItem()), Toast.LENGTH_LONG).show();
+
+                    // ChooseDateActivity.this.startActivity(intent);
                 }
 
 
@@ -224,6 +241,16 @@ public class ChooseDateActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

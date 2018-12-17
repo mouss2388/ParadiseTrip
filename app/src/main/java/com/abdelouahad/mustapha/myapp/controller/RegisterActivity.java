@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -52,6 +54,16 @@ public class RegisterActivity extends AppCompatActivity {
         delete = findViewById(R.id.delete);
 
 
+        // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+            ActionBar actionbar = getSupportActionBar();
+            //Disable Title ToolBar
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.register);
+            actionbar.setTitle(title);            //Display Arrow Back
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowHomeEnabled(true);
+        }
 
 
 
@@ -221,5 +233,16 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this,"User No signed",Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

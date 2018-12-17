@@ -1,8 +1,10 @@
 package com.abdelouahad.mustapha.myapp.controller;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -41,6 +43,19 @@ public class Result extends AppCompatActivity {
         final ImageView img = findViewById(R.id.logo);
 
         travelId= getIntent().getStringExtra(EXTRA_COUNTRY);
+
+
+        // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+            ActionBar actionbar = getSupportActionBar();
+            //Disable Title ToolBar
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.flights_available);
+            actionbar.setTitle(title);            //Display Arrow Back
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowHomeEnabled(true);
+        }
+
 
         Log.d(TAG,"Oncreate: Started");
         final ListView mListView = findViewById(R.id.listView);
@@ -127,5 +142,16 @@ public class Result extends AppCompatActivity {
         if(dateStart.after(min_compagny) && dateReturn.before(max_compagny))
             Log.e("dateAvailable", "Between Date");
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

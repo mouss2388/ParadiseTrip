@@ -68,7 +68,9 @@ public class UpdateActivity extends AppCompatActivity {
         if (getSupportActionBar() != null){
             ActionBar actionbar = getSupportActionBar();
             //Disable Title ToolBar
-            actionbar.setDisplayShowTitleEnabled(false);
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.account);
+            actionbar.setTitle(title);
             //Display Arrow Back
             actionbar.setDisplayHomeAsUpEnabled(true);
             actionbar.setDisplayShowHomeEnabled(true);

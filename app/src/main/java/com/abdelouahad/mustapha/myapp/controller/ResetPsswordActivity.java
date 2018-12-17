@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +39,9 @@ public class ResetPsswordActivity extends AppCompatActivity {
         if (getSupportActionBar() != null){
             ActionBar actionbar = getSupportActionBar();
             //Disable Title ToolBar
-            ;            actionbar.setDisplayShowTitleEnabled(true);
-            //Display Arrow Back
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.reset_password);
+            actionbar.setTitle(title);            //Display Arrow Back
             actionbar.setDisplayHomeAsUpEnabled(true);
             actionbar.setDisplayShowHomeEnabled(true);
         }
@@ -110,5 +112,16 @@ public class ResetPsswordActivity extends AppCompatActivity {
 
     private Boolean isEmpty(){
         return editTextEmail.getText().length()> 5;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

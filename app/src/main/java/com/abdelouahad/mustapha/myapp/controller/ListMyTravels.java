@@ -32,7 +32,9 @@ public class ListMyTravels extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             ActionBar actionbar = getSupportActionBar();
             //Disable Title ToolBar
-            actionbar.setDisplayShowTitleEnabled(false);
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.my_travels);
+            actionbar.setTitle(title);
             //Display Arrow Back
             actionbar.setDisplayHomeAsUpEnabled(true);
             actionbar.setDisplayShowHomeEnabled(true);

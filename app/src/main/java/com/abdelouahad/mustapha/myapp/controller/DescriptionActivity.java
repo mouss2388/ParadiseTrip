@@ -10,11 +10,15 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -63,6 +67,17 @@ public class DescriptionActivity extends AppCompatActivity {
         Toast.makeText(DescriptionActivity.this,travelId,Toast.LENGTH_LONG).show();
 
 
+        if (getSupportActionBar() != null) {
+            ActionBar actionbar = getSupportActionBar();
+            //Disable Title ToolBar
+            actionbar.setDisplayShowTitleEnabled(true);
+            String title = getResources().getString(R.string.app_name);
+            actionbar.setTitle(title);
+
+            //Display Arrow Back
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setDisplayShowHomeEnabled(true);
+        }
 
         final RequestDataTravel info = new RequestDataTravel();
         info.getData("TRAVEL_"+travelId,new FirebaseCallback() {
@@ -152,5 +167,16 @@ public class DescriptionActivity extends AppCompatActivity {
         canvas.drawBitmap(raw, rect, rect, paint);
 
         return result;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
