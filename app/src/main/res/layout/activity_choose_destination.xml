@@ -3,47 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgrnd"
+    tools:context=".controller.ChooseDestination"
+    >
 
-    android:background="@color/colorMain"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".controller.ChooseDestination">
 
-    <LinearLayout
-        android:id="@+id/listDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
+    <!--underline destination_txtView
+     with tag <u> in the string ressource-->
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginTop="150dp"
+            android:id="@+id/destination_txtView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Votre destination:"
+            android:text="Votre destination"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold|italic" />
+            android:textSize="26dp"
+            android:textStyle="bold|italic"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+
+            />
 
         <Spinner
-
+            android:layout_below="@+id/destination_txtView"
             android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:prompt="@string/destination" />
-    </LinearLayout>
+            android:prompt="@string/destination"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            />
 
     <Button
+        android:id="@+id/validate"
+        style="@style/AppTheme.ButtonCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:id="@+id/validate"
-        style="@style/AppTheme.ButtonCustom"
-        android:layout_below="@+id/listDestination"
-        android:layout_marginTop="50dp"
-        android:text="je fonce !"
 
-        />
+        android:text="je fonce !" />
 
 
 </RelativeLayout>
