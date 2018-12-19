@@ -58,7 +58,7 @@ public class ResetPsswordActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+      /*  FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("test");
 
         // Read from the database
