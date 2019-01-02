@@ -126,6 +126,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createAccount() {
 
+        mEmail = email.getText().toString();
+        mPassword = password.getText().toString();
         mAuth.createUserWithEmailAndPassword(mEmail, mPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
