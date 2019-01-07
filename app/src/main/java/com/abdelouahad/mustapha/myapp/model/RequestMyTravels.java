@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class RequestMyTravels {
 
     private String price;
@@ -20,10 +22,20 @@ public class RequestMyTravels {
     private String return_date;
     private String id;
     private  String name;
+    private ArrayList<RequestMyTravels> mList;
 
 
     public RequestMyTravels(){
 
+        mList = new ArrayList<>();
+    }
+
+    public RequestMyTravels(String name, String price,String start_date, String return_date, String logo){
+       this.name = name;
+       this.price= price;
+        this.start_date= start_date;
+        this.return_date= return_date;
+        this.logo= logo;
     }
 
     public RequestMyTravels(String id){
@@ -82,7 +94,7 @@ public class RequestMyTravels {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String value;
-
+                    mList.clear();
                     for (DataSnapshot Uid : dataSnapshot.getChildren()) {
                         if (Uid.getKey().equals(user.getUid())) {
                             Log.e("ReqyestMyTravels",Uid.getKey());
@@ -121,6 +133,7 @@ public class RequestMyTravels {
                                                         setReturn_date(value);
                                                     }
                                                 }
+                                                mList.add(new RequestMyTravels(getName(),getPrice(),getStart_date(),getReturn_date(),getLogo()));
                                             }
                                         }
                                     }
@@ -147,5 +160,13 @@ public class RequestMyTravels {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<RequestMyTravels> getmList() {
+        return mList;
+    }
+
+    public void setmList(ArrayList<RequestMyTravels> mList) {
+        this.mList = mList;
     }
 }

@@ -3,6 +3,7 @@ package com.abdelouahad.mustapha.myapp.controller;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -49,16 +50,14 @@ public class ListMyTravels extends AppCompatActivity {
                 @Override
                 public void onCallback() {
 
-                    String imageBase64 = myTravels.getLogo();
-                    String startD = myTravels.getStart_date();
-                    String returnD = myTravels.getReturn_date();
-                    String price = myTravels.getPrice();
-                    String name_compagny= myTravels.getName();
-                    final Compagny compagny = new Compagny(name_compagny,price, "PREMIUM", startD, returnD, img, imageBase64);
-                    compagniesList.add(compagny);
+                    for(RequestMyTravels mTravel : myTravels.getmList()){
+                        Log.i("ListMyTravels", " name: " + mTravel.getName() + " price: " + mTravel.getPrice());
+                        final Compagny compagny = new Compagny(mTravel.getName(), mTravel.getPrice(), "PREMIUM", mTravel.getStart_date(), mTravel.getReturn_date(), img, mTravel.getLogo());
+                        compagniesList.add(compagny);
+                    }
+
 
                     final CompagnyListAdapter adapter = new CompagnyListAdapter(ListMyTravels.this, R.layout.adapter_view_layout, compagniesList);
-
 
                     mListView.setAdapter(adapter);
                 }
