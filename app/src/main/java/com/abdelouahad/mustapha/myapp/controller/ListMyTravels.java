@@ -5,13 +5,20 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.abdelouahad.mustapha.myapp.R;
 import com.abdelouahad.mustapha.myapp.model.Compagny;
 import com.abdelouahad.mustapha.myapp.model.FirebaseCallback;
 import com.abdelouahad.mustapha.myapp.model.RequestMyTravels;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -60,6 +67,25 @@ public class ListMyTravels extends AppCompatActivity {
                     final CompagnyListAdapter adapter = new CompagnyListAdapter(ListMyTravels.this, R.layout.adapter_view_layout, compagniesList);
 
                     mListView.setAdapter(adapter);
+
+                    mListView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                String tag_name_compagny = compagniesList.get(position).getName();
+                                String tag_logo_base64 = compagniesList.get(position).getImageBase64();
+                                String tag_start_date = compagniesList.get(position).getStart_date();
+                                String tag_return_date = compagniesList.get(position).getReturn_date();
+                                String tag_price = compagniesList.get(position).getPrice();
+
+                                Toast.makeText(ListMyTravels.this, tag_name_compagny+" "+ tag_price, Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+                    });
                 }
             });
 
