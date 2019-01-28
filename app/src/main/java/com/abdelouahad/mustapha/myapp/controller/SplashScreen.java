@@ -18,6 +18,7 @@ public class SplashScreen extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT= 3000;
     private boolean networkOk= false;
+    ProgressDialog pd =null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ProgressDialog pd = new ProgressDialog(SplashScreen.this);
+                pd= new ProgressDialog(SplashScreen.this);
                 pd.setMessage("Check Network Status");
                 pd.show();
                 networkOk=isNetworkAvailable(getBaseContext());
@@ -51,4 +52,9 @@ public class SplashScreen extends AppCompatActivity {
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pd.dismiss();
+    }
 }

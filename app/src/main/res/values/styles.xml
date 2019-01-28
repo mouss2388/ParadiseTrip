@@ -49,4 +49,13 @@
     </style>
 
 
+    <style name="AppTheme.TextCustom" parent="android:Widget.TextView">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>

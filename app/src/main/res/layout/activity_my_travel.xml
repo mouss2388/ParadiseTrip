@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.MyTravel"
+    android:orientation="vertical">
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/header_travel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/panorama_beach"
+        android:contentDescription="@string/picture_from_firebase" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            tools:context=".controller.MyTravel">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/title_travel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_my_travel"
+                    style="@style/AppTheme.TextCustom"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Country"
+                    android:textColor="@color/colorDark"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    style="@style/AppTheme.TextCustom"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compagnie :"
+                android:textColor="@color/colorDark"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="100">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vol assuré par"
+                        android:textColor="@color/colorDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/logo_compagny"
+                        android:layout_width="57dp"
+                        android:layout_height="57dp"
+                        android:background="@drawable/backgrnd" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Numéro d'appel"
+                        android:textColor="@color/colorDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/numero_tel"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="800 344 6726"
+                        android:textColor="@color/colorDark"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@color/colorDark" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Détail du Vol :"
+                android:textColor="@color/colorDark"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="100">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/destination"
+                        android:textColor="@color/colorDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/flag_country"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/panorama" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:text="Classe"
+                        android:textColor="@color/colorDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/class_flight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Business"
+                        android:textColor="@color/colorDark"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Note Client"
+                        android:textColor="@color/colorDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:id="@+id/star_1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/star_empty"/>
+                        <ImageView
+                            android:id="@+id/star_2"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/star_empty"/>
+                        <ImageView
+                            android:id="@+id/star_3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/star_empty"/>
+                        <ImageView
+                            android:id="@+id/star_4"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/star_empty"/>
+                        <ImageView
+                            android:id="@+id/star_5"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/star_empty"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/price"
+                        android:textColor="@color/colorDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_gravity="center_horizontal"
+                        android:text="550€ Ttc"
+                        android:textColor="@color/colorDark"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nombre de passagers: "
+                    android:textColor="@color/colorDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/howMuchPassenger"
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    android:textColor="@color/colorDark"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/howMuchAdult"
+                    style="@style/AppTheme.TextCustom"
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="italic" />
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/adult" />
+
+                <TextView
+                    android:id="@+id/howMuchChild"
+                    style="@style/AppTheme.TextCustom"
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="italic" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/child"/>
+
+                <TextView
+                    android:id="@+id/howMuchElderly"
+                    style="@style/AppTheme.TextCustom"
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="italic" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/elderly"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/AppTheme.TextCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start"
+                    android:textSize="18sp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    />
+                <LinearLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                   >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/airplane_take_off"/>
+
+                    <LinearLayout
+                        android:id="@+id/linearTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="Aéroport: " />
+
+                            <TextView
+                                android:id="@+id/start_airport_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="start_airport"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Date: " />
+
+                            <TextView
+                                android:id="@+id/start_date_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="start_date"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Durée: " />
+
+                            <TextView
+                                android:id="@+id/start_duration_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0h00min"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/runway"
+                    android:rotation="90"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_horizontal_margin"
+                    />
+                <TextView
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    style="@style/AppTheme.TextCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/return_"
+                    android:textSize="18sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/airplane_landing"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Aéroport: "
+                                style="@style/AppTheme.TextCustom"
+                                />
+
+                            <TextView
+                                android:id="@+id/return_airport_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="return_airport"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Date: "
+                                style="@style/AppTheme.TextCustom"
+                                />
+
+                            <TextView
+                                android:id="@+id/return_date_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="return_date"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Durée: "
+                                style="@style/AppTheme.TextCustom"
+                                />
+
+                            <TextView
+                                android:id="@+id/return_duration_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0h00min"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_delete_travel"
+                style="@style/AppTheme.ButtonCustom"
+                android:text="@string/delete" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

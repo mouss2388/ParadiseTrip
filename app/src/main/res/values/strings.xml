@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">ParadiseTrip</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -58,5 +58,18 @@
     <string name="register">Inscription</string>
     <string name="reset_password">Récupérer votre mot de passe</string>
     <string name="travellers_classes">Voyageurs / Classe</string>
+    <string name="my_travel">Mon Voyage</string>
+
+
+    <string name="compagny">Compagnie</string>
+    <string name="title_my_travel"><u>Votre voyage en</u></string>
+
+
+    <string name="price">Prix</string>
+    <string name="picture_from_firebase">Picture from Firebase</string>
+    <string name="delete">Supprimer</string>
+    <string name="start">Départ</string>
+    <string name="return_">Retour</string>
+
 
 </resources>

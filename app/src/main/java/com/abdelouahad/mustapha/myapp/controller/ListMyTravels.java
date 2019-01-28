@@ -1,5 +1,6 @@
 package com.abdelouahad.mustapha.myapp.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -82,6 +83,8 @@ public class ListMyTravels extends AppCompatActivity {
 
                                 Toast.makeText(ListMyTravels.this, tag_name_compagny+" "+ tag_price, Toast.LENGTH_SHORT).show();
 
+                                Intent intent = new Intent(ListMyTravels.this, MyTravel.class);
+                                ListMyTravels.this.startActivity(intent);
 
                             }
                         }
