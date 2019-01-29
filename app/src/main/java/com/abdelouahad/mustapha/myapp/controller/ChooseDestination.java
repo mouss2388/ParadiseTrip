@@ -20,7 +20,7 @@ import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
 
 public class ChooseDestination extends AppCompatActivity {
 
@@ -92,7 +92,7 @@ public class ChooseDestination extends AppCompatActivity {
                                 if(nameDestination.equals(info[i].getCountry()))
                                     id= String.valueOf(info[i].getId());
 
-                            intent.putExtra(EXTRA_COUNTRY, id);
+                            intent.putExtra(EXTRA_COUNTRY_ID, id);
                             ChooseDestination.this.startActivity(intent);
                         }
                     });

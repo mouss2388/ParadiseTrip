@@ -23,17 +23,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_COUNTRY_NAME;
 import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_RETURN_DATE;
 import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_START_DATE;
 import static com.abdelouahad.mustapha.myapp.controller.MainActivity.COMPANIES_AVAILABLE;
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
 
 
 public class Result extends AppCompatActivity {
     public static final String TAG="Result";
 
-    Date min_compagny, max_compagny;   // assume these are set to something
-    Date dateStart, dateReturn;          // the date in question
     String travelId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class Result extends AppCompatActivity {
 
         final ImageView img = findViewById(R.id.logo);
 
-        travelId= getIntent().getStringExtra(EXTRA_COUNTRY);
+        travelId= getIntent().getStringExtra(EXTRA_COUNTRY_ID);
 
 
         // add back arrow to toolbar
@@ -63,12 +62,12 @@ public class Result extends AppCompatActivity {
 
         // Toast.makeText(Result.this, "BEFORE REQUEST FLIGHTS", Toast.LENGTH_LONG).show();
 
-        final RequestFlights flights = new RequestFlights();
+        final RequestFlights flights = new RequestFlights("ALL");
 
         for(int indx = 0; indx< COMPANIES_AVAILABLE.length; indx++) {
 
 
-            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId , COMPANIES_AVAILABLE[indx], new FirebaseCallback() {
+            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId+"/COMPAGNIES/", COMPANIES_AVAILABLE[indx], new FirebaseCallback() {
                 @Override
                 public void onCallback() {
 
@@ -77,9 +76,11 @@ public class Result extends AppCompatActivity {
                     String returnD = getIntent().getStringExtra(EXTRA_RETURN_DATE);
                     String price = flights.getPrice();
                     String name_compagny = flights.getName_compagny();
+                    String destination = getIntent().getStringExtra(EXTRA_COUNTRY_NAME);
+
                     Toast.makeText(Result.this, "Name Compagny : " + name_compagny, Toast.LENGTH_SHORT).show();
 
-                    final Compagny compagny = new Compagny(name_compagny, price, "Economique", startD, returnD, img, imageBase64);
+                    final Compagny compagny = new Compagny(name_compagny, price, destination, startD, returnD, img, imageBase64);
                     compagniesList.add(compagny);
 
                     final CompagnyListAdapter adapter = new CompagnyListAdapter(Result.this, R.layout.adapter_view_layout, compagniesList);
@@ -112,22 +113,22 @@ public class Result extends AppCompatActivity {
                                 // Write a message to the database
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-                                String rootPathUsers = "/USERS/" + user.getUid() + "/MY_TRAVELS/ID_" + travelId + "/COMPAGNY/" + tag_name_compagny + "/";
+                                String rootPathUsers = "/USERS/" + user.getUid() + "/MY_TRAVELS/ID_" + travelId + "/COMPAGNIES/" + tag_name_compagny + "/";
                                 ArrayList<DatabaseReference> myRef = new ArrayList<>();
                                 myRef.add(database.getReference(rootPathUsers));
-                                myRef.add(database.getReference(rootPathUsers + "PRICE"));
-                                myRef.add(database.getReference(rootPathUsers + "START_DATE"));
-                                myRef.add(database.getReference(rootPathUsers + "RETURN_DATE"));
-                                myRef.add(database.getReference(rootPathUsers + "Logo_B64"));
+                                myRef.add(database.getReference(rootPathUsers + "Price"));
+                                myRef.add(database.getReference(rootPathUsers + "StartDate"));
+                                myRef.add(database.getReference(rootPathUsers + "ReturnDate"));
+                                myRef.add(database.getReference(rootPathUsers + "Logo"));
 
                                 for (DatabaseReference ref : myRef) {
-                                    if (ref.getPath().toString().equals(rootPathUsers + "PRICE")) {
+                                    if (ref.getPath().toString().equals(rootPathUsers + "Price")) {
                                         ref.setValue(tag_price);
-                                    } else if (ref.getPath().toString().equals(rootPathUsers + "START_DATE")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "StartDate")) {
                                         ref.setValue(tag_start_date);
-                                    } else if (ref.getPath().toString().equals(rootPathUsers + "RETURN_DATE")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "ReturnDate")) {
                                         ref.setValue(tag_return_date);
-                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Logo_B64")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Logo")) {
                                         ref.setValue(tag_logo_base64);
                                     }
                                 }
@@ -137,11 +138,6 @@ public class Result extends AppCompatActivity {
                 }
             });
         }
-    }
-    void dateAvailable(){
-        if(dateStart.after(min_compagny) && dateReturn.before(max_compagny))
-            Log.e("dateAvailable", "Between Date");
-
     }
 
     @Override

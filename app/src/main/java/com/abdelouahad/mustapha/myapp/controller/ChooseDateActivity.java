@@ -27,7 +27,7 @@ import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
 
 public class ChooseDateActivity extends AppCompatActivity {
 
@@ -35,6 +35,8 @@ public class ChooseDateActivity extends AppCompatActivity {
     String startDate, returnDate,travelId;
     public static String EXTRA_START_DATE="EXTRA_START_DATE" ;
     public static String EXTRA_RETURN_DATE = "EXTRA_RETURN_DATE";
+    public static String EXTRA_COUNTRY_NAME = "EXTRA_COUNTRY_NAME";
+
     DatePickerDialog datePickerDialogStart,  datePickerDialogEnd;
     TextView start_date_info, return_date_info;
     TextView country_name;
@@ -47,7 +49,7 @@ public class ChooseDateActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_date);
-        travelId= getIntent().getStringExtra(EXTRA_COUNTRY);
+        travelId= getIntent().getStringExtra(EXTRA_COUNTRY_ID);
         start_date_info = findViewById(R.id.start_date_info);
         return_date_info = findViewById(R.id.return_date_info);
 
@@ -161,12 +163,14 @@ public class ChooseDateActivity extends AppCompatActivity {
                     Intent intent = new Intent(ChooseDateActivity.this, Result.class);
                     intent.putExtra(EXTRA_RETURN_DATE, returnDate);
                     intent.putExtra(EXTRA_START_DATE, startDate);
-                    intent.putExtra(EXTRA_COUNTRY, travelId);
+                    intent.putExtra(EXTRA_COUNTRY_ID, travelId);
+                    intent.putExtra(EXTRA_COUNTRY_NAME, info.getCountry());
+
 
                     int airportStart = start_spinner.getSelectedItemPosition();
                     Toast.makeText(ChooseDateActivity.this, String.valueOf(start_spinner.getSelectedItem()), Toast.LENGTH_LONG).show();
 
-                    // ChooseDateActivity.this.startActivity(intent);
+                    ChooseDateActivity.this.startActivity(intent);
                 }
 
 

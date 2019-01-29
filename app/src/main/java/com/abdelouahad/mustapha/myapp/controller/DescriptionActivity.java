@@ -10,14 +10,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +31,7 @@ import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY;
+import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
 
 public class DescriptionActivity extends AppCompatActivity {
 
@@ -49,7 +46,7 @@ public class DescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
 
-        String travelId= getIntent().getStringExtra(EXTRA_COUNTRY);
+        String travelId= getIntent().getStringExtra(EXTRA_COUNTRY_ID);
 
         //Active le scrollbar du textView
         description = findViewById(R.id.description);
@@ -103,7 +100,7 @@ public class DescriptionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DescriptionActivity.this, ChooseDateActivity.class);
                 String id= String.valueOf(info.getId());
-                intent.putExtra(EXTRA_COUNTRY, id);
+                intent.putExtra(EXTRA_COUNTRY_ID, id);
                 DescriptionActivity.this.startActivity(intent);
             }
         });

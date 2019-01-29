@@ -63,7 +63,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
     public View getView(int position, View convertView, ViewGroup parent) {
         //get the persons information
         String price = getItem(position).getPrice();
-        String classe = getItem(position).getClasse();
+        String destination = getItem(position).getDestination();
         String start_date = getItem(position).getStart_date();
         String return_date= getItem(position).getReturn_date();
         ImageView imageView = getItem(position).getImageView();
@@ -71,7 +71,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         String imageBase64 = getItem(position).getImageBase64();
 
         //Create the person object with the information
-        Compagny compagny = new Compagny(name_compagny,price,classe,start_date,return_date,imageView, imageBase64);
+        Compagny compagny = new Compagny(name_compagny,price,destination,start_date,return_date,imageView, imageBase64);
 
         //create the view result for showing the animation
         final View result;
@@ -106,7 +106,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         lastPosition = position;
 
         holder.price.setText(compagny.getPrice());
-        holder.classe.setText(compagny.getClasse());
+        holder.classe.setText(compagny.getDestination());
         holder.start_date.setText(compagny.getStart_date());
         holder.return_date.setText(compagny.getReturn_date());
 

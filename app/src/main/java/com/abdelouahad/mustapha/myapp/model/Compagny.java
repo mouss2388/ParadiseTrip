@@ -4,17 +4,17 @@ import android.widget.ImageView;
 
 public class Compagny {
     private String price;
-    private String classe;
+    private String destination;
     private String start_date;
     private String return_date;
     private ImageView imageView;
     private String ImageBase64;
     private String name;
 
-    public Compagny(String name,String price, String classe, String start_date, String return_date, ImageView imageView, String imageBase64) {
+    public Compagny(String name,String price, String destination, String start_date, String return_date, ImageView imageView, String imageBase64) {
         this.name = name;
         this.price = price;
-        this.classe = classe;
+        this.destination = destination;
         this.start_date = start_date;
         this.return_date = return_date;
         this.imageView = imageView;
@@ -30,12 +30,12 @@ public class Compagny {
         this.price = price;
     }
 
-    public String getClasse() {
-        return classe;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setClasse(String classe) {
-        this.classe = classe;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getStart_date() {
