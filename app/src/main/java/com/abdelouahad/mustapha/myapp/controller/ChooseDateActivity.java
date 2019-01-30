@@ -27,15 +27,25 @@ import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_ADULT_PASSENGER;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_ALL_PASSENGERS;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_CHILDREN_PASSENGER;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_CLASS;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_FLAG;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_ID;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_NAME;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_ELDERLY_PASSENGER;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_RATING;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_RETURN_AIRPORT;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_RETURN_DATE;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_START_AIRPORT;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_START_DATE;
 
 public class ChooseDateActivity extends AppCompatActivity {
 
     Button btn_classes, btn_search;
     String startDate, returnDate,travelId;
-    public static String EXTRA_START_DATE="EXTRA_START_DATE" ;
-    public static String EXTRA_RETURN_DATE = "EXTRA_RETURN_DATE";
-    public static String EXTRA_COUNTRY_NAME = "EXTRA_COUNTRY_NAME";
+    String nbPassengers, nbChildren, nbAdults, nbElderly, classe;
 
     DatePickerDialog datePickerDialogStart,  datePickerDialogEnd;
     TextView start_date_info, return_date_info;
@@ -73,7 +83,7 @@ public class ChooseDateActivity extends AppCompatActivity {
         }
 
 
-        final RequestDataTravel info = new RequestDataTravel("Country+Airports");
+        final RequestDataTravel info = new RequestDataTravel("Banner+Country+Airports+Rate+Flag");
         final ArrayList<String>[] listAirports = new ArrayList[1];
         final List<String> spinnerArray = new ArrayList<>();
 
@@ -147,8 +157,9 @@ public class ChooseDateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Intent intent = new Intent(ChooseDateActivity.this, TravellersActivity.class);
-                ChooseDateActivity.this.startActivity(intent);
+                ChooseDateActivity.this.startActivityForResult(intent,200);
 
             }
         });
@@ -160,15 +171,24 @@ public class ChooseDateActivity extends AppCompatActivity {
                 if(returnDate ==null || startDate ==null) {
                     Toast.makeText(ChooseDateActivity.this, "Vous avez oublié de sélectionner une date de départ ou de retour", Toast.LENGTH_LONG).show();
                 }else{
+                    String startAirport = String.valueOf(start_spinner.getSelectedItem());
+                    String returnAirport = String.valueOf(return_spinner.getSelectedItem());
+
                     Intent intent = new Intent(ChooseDateActivity.this, Result.class);
                     intent.putExtra(EXTRA_RETURN_DATE, returnDate);
                     intent.putExtra(EXTRA_START_DATE, startDate);
                     intent.putExtra(EXTRA_COUNTRY_ID, travelId);
                     intent.putExtra(EXTRA_COUNTRY_NAME, info.getCountry());
+                    intent.putExtra(EXTRA_START_AIRPORT, startAirport);
+                    intent.putExtra(EXTRA_RETURN_AIRPORT, returnAirport);
+                    intent.putExtra(EXTRA_RATING, info.getRate());
+                    intent.putExtra(EXTRA_CLASS, classe);
+                    intent.putExtra(EXTRA_COUNTRY_FLAG, info.getBanner());
+                    intent.putExtra(EXTRA_COUNTRY_FLAG, info.getFlag());
 
+                    Log.i("rating",String.valueOf(info.getBanner()));
 
-                    int airportStart = start_spinner.getSelectedItemPosition();
-                    Toast.makeText(ChooseDateActivity.this, String.valueOf(start_spinner.getSelectedItem()), Toast.LENGTH_LONG).show();
+                    // Toast.makeText(ChooseDateActivity.this, String.valueOf(start_spinner.getSelectedItem()), Toast.LENGTH_LONG).show();
 
                     ChooseDateActivity.this.startActivity(intent);
                 }
@@ -245,6 +265,28 @@ public class ChooseDateActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (200) : {
+                if (resultCode == RESULT_OK) {
+                    nbChildren = data.getStringExtra(EXTRA_CHILDREN_PASSENGER);
+                    nbAdults = data.getStringExtra(EXTRA_ADULT_PASSENGER);
+                    nbElderly = data.getStringExtra(EXTRA_ELDERLY_PASSENGER);
+                    nbPassengers = data.getStringExtra(EXTRA_ALL_PASSENGERS);
+                    classe = data.getStringExtra(EXTRA_CLASS);
+                    Toast.makeText(ChooseDateActivity.this, "children: "+nbChildren
+                            +" adults: "+nbAdults+ " senior: "+nbElderly+
+                            "classe: "+classe, Toast.LENGTH_LONG).show();
+
+                }
+                break;
+            }
+        }
     }
 
     @Override

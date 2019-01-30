@@ -21,13 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_COUNTRY_NAME;
-import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_RETURN_DATE;
-import static com.abdelouahad.mustapha.myapp.controller.ChooseDateActivity.EXTRA_START_DATE;
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.COMPANIES_AVAILABLE;
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.COMPANIES_AVAILABLE;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_ID;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_NAME;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_RETURN_DATE;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_START_DATE;
 
 
 public class Result extends AppCompatActivity {

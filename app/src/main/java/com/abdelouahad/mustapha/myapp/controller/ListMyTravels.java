@@ -18,12 +18,11 @@ import com.abdelouahad.mustapha.myapp.model.FirebaseCallback;
 import com.abdelouahad.mustapha.myapp.model.RequestMyTravels;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.COMPANIES_AVAILABLE;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.COMPANIES_AVAILABLE;
+
 
 public class ListMyTravels extends AppCompatActivity {
 

@@ -20,7 +20,7 @@ import com.abdelouahad.mustapha.myapp.model.RequestDataTravel;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.abdelouahad.mustapha.myapp.controller.MainActivity.EXTRA_COUNTRY_ID;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_ID;
 
 public class ChooseDestination extends AppCompatActivity {
 

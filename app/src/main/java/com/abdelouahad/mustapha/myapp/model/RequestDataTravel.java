@@ -27,6 +27,7 @@ public class RequestDataTravel {
     private int numberExtractData;
     private String price;
     private int rate;
+    private String flag;
 
 
 
@@ -170,6 +171,15 @@ public class RequestDataTravel {
                     if(key.contains("airport_")) {
                         this.airports.add(value);
                     }
+                    break;
+                case "Flag":
+                    assert key != null;
+                    if (key.equals(field)) {
+                        setFlag(value);
+                        Log.e("RequestDataTravel flag", getFlag());
+                        setNumberExtractData(getNumberExtractData()-1);
+                    }
+                    break;
             }
         }
     }
@@ -203,6 +213,9 @@ public class RequestDataTravel {
                 break;
             case "Price":
                 setPrice(value);
+                break;
+            case "Flag":
+                setFlag(value);
                 break;
         }
 
@@ -325,5 +338,13 @@ public class RequestDataTravel {
 
     public void setAirports(ArrayList<String> airports) {
         this.airports = airports;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

@@ -37,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static com.abdelouahad.mustapha.myapp.controller.LoginActivity.key_passwrd;
 import static com.abdelouahad.mustapha.myapp.controller.LoginActivity.mPreferences;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_ID;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,13 +48,12 @@ public class MainActivity extends AppCompatActivity
     private Boolean login_state= false;
     protected Button yourDestination;
     private TextView name, email;
-    public static String EXTRA_COUNTRY_ID="EXTRA_COUNTRY_ID";
+
 
     public static Boolean NOTIF_ENABLE=false, SOUND_ENABLED= false, VIBRATOR_ENABLE= false, NIGHT_ENABLE=false;
 
     private Toolbar toolbar;
 
-    public static final String[] COMPANIES_AVAILABLE = {"Aegean","AirCaraibes","EasyJet"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
