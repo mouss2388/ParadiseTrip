@@ -50,7 +50,7 @@ public class ChooseDateActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialogStart,  datePickerDialogEnd;
     TextView start_date_info, return_date_info;
     TextView country_name;
-
+    Boolean dataGot;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class ChooseDateActivity extends AppCompatActivity {
         btn_search = findViewById(R.id.search);
         country_name = findViewById(R.id.destination);
 
+        dataGot = false;
         final Spinner start_spinner = findViewById(R.id.start_spinner);
         final Spinner return_spinner = findViewById(R.id.return_spinner);
 
@@ -170,6 +171,9 @@ public class ChooseDateActivity extends AppCompatActivity {
 
                 if(returnDate ==null || startDate ==null) {
                     Toast.makeText(ChooseDateActivity.this, "Vous avez oublié de sélectionner une date de départ ou de retour", Toast.LENGTH_LONG).show();
+                }else if(!dataGot) {
+                    Toast.makeText(ChooseDateActivity.this, "Vous avez oublié de sélectionner un nombre de passagers et une classe", Toast.LENGTH_LONG).show();
+
                 }else{
                     String startAirport = String.valueOf(start_spinner.getSelectedItem());
                     String returnAirport = String.valueOf(return_spinner.getSelectedItem());
@@ -186,7 +190,6 @@ public class ChooseDateActivity extends AppCompatActivity {
                     intent.putExtra(EXTRA_COUNTRY_FLAG, info.getBanner());
                     intent.putExtra(EXTRA_COUNTRY_FLAG, info.getFlag());
 
-                    Log.i("rating",String.valueOf(info.getBanner()));
 
                     // Toast.makeText(ChooseDateActivity.this, String.valueOf(start_spinner.getSelectedItem()), Toast.LENGTH_LONG).show();
 
@@ -274,6 +277,7 @@ public class ChooseDateActivity extends AppCompatActivity {
         switch(requestCode) {
             case (200) : {
                 if (resultCode == RESULT_OK) {
+                    dataGot = true;
                     nbChildren = data.getStringExtra(EXTRA_CHILDREN_PASSENGER);
                     nbAdults = data.getStringExtra(EXTRA_ADULT_PASSENGER);
                     nbElderly = data.getStringExtra(EXTRA_ELDERLY_PASSENGER);
