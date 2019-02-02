@@ -18,6 +18,10 @@ public class RequestFlights {
     private String id;
     private String name_compagny;
     private String destination;
+    private String startHour;
+    private String returnHour;
+    private String tel;
+    private String duration;
 
 
 
@@ -48,6 +52,18 @@ public class RequestFlights {
                             } else if (data.getKey().equals("Logo")) {
                                 value = String.valueOf(data.getValue());
                                 setLogo(value);
+                            }else if (data.getKey().equals("ReturnHour")) {
+                                value = String.valueOf(data.getValue());
+                                setReturnHour(value);
+                            }else if (data.getKey().equals("StartHour")) {
+                                value = String.valueOf(data.getValue());
+                                setStartHour(value);
+                            }else if (data.getKey().equals("Tel")) {
+                                value = String.valueOf(data.getValue());
+                                setTel(value);
+                            }else if (data.getKey().equals("Duration")) {
+                                value = String.valueOf(data.getValue());
+                                setDuration(value);
                             }
                         }
                     }
@@ -118,5 +134,37 @@ public class RequestFlights {
 
     public void setName_compagny(String name_compagny) {
         this.name_compagny = name_compagny;
+    }
+
+    public String getStartHour() {
+        return startHour;
+    }
+
+    public void setStartHour(String startHour) {
+        this.startHour = startHour;
+    }
+
+    public String getReturnHour() {
+        return returnHour;
+    }
+
+    public void setReturnHour(String returnHour) {
+        this.returnHour = returnHour;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

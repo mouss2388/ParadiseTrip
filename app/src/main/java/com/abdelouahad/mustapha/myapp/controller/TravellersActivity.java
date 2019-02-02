@@ -81,7 +81,7 @@ public class TravellersActivity extends AppCompatActivity implements View.OnClic
                     int senior = Integer.parseInt(number_senior.getText().toString());
 
                     Intent intent = new Intent();
-                    intent.putExtra(EXTRA_ALL_PASSENGERS, children + adults + senior);
+                    intent.putExtra(EXTRA_ALL_PASSENGERS, String.valueOf(children + adults + senior));
                     intent.putExtra(EXTRA_CHILDREN_PASSENGER, String.valueOf(number_child.getText()));
                     intent.putExtra(EXTRA_ADULT_PASSENGER, String.valueOf(number_adult.getText()));
                     intent.putExtra(EXTRA_ELDERLY_PASSENGER, String.valueOf(number_senior.getText()));

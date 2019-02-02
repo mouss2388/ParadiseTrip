@@ -58,8 +58,14 @@ public class ListMyTravels extends AppCompatActivity {
                 public void onCallback() {
 
                     for(RequestMyTravels mTravel : myTravels.getmList()){
-                        Log.i("ListMyTravels", " name: " + mTravel.getName() + " price: " + mTravel.getPrice());
-                        final Compagny compagny = new Compagny(mTravel.getName(), mTravel.getPrice(), "PREMIUM", mTravel.getStart_date(), mTravel.getReturn_date(), img, mTravel.getLogo());
+                        Log.i("ListMyTravels", " name: " + mTravel.getTo_country() + " price: " + mTravel.getPrice());
+
+                        Compagny compagny = new Compagny(mTravel.getPrice(),mTravel.getTo_country(),
+                                mTravel.getStart_date(), mTravel.getReturn_date(),
+                                img,mTravel.getLogo(),mTravel.getName(),
+                                mTravel.getStart_hour(),mTravel.getReturn_hour(),
+                                mTravel.getTel(),mTravel.getDuration());
+
                         compagniesList.add(compagny);
                     }
 

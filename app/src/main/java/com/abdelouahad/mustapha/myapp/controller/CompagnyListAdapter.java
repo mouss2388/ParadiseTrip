@@ -41,6 +41,8 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         TextView classe;
         TextView start_date, return_date;
         ImageView imageView;
+        String start_hour, return_hour;
+        String tel, duration;
     }
 
     /**
@@ -69,9 +71,14 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         ImageView imageView = getItem(position).getImageView();
         String name_compagny = getItem(position).getName();
         String imageBase64 = getItem(position).getImageBase64();
+        String start_hour = getItem(position).getStart_hour();
+        String return_hour = getItem(position).getReturn_hour();
+        String tel = getItem(position).getTel();
+        String duration = getItem(position).getDuration();
 
         //Create the person object with the information
-        Compagny compagny = new Compagny(name_compagny,price,destination,start_date,return_date,imageView, imageBase64);
+        //Compagny compagny = new Compagny(name_compagny,price,destination,start_date,return_date,start_hour,return_hour,imageView, imageBase64,tel,duration);
+        Compagny compagny = new Compagny(price, destination,start_date,return_date,imageView,imageBase64,name_compagny,start_hour,return_hour,tel,duration);
 
         //create the view result for showing the animation
         final View result;

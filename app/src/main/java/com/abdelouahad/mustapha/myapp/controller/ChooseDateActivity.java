@@ -29,6 +29,7 @@ import java.util.List;
 
 import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_ADULT_PASSENGER;
 import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_ALL_PASSENGERS;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_BANNER;
 import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_CHILDREN_PASSENGER;
 import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_CLASS;
 import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_FLAG;
@@ -187,11 +188,15 @@ public class ChooseDateActivity extends AppCompatActivity {
                     intent.putExtra(EXTRA_RETURN_AIRPORT, returnAirport);
                     intent.putExtra(EXTRA_RATING, info.getRate());
                     intent.putExtra(EXTRA_CLASS, classe);
-                    intent.putExtra(EXTRA_COUNTRY_FLAG, info.getBanner());
+                    intent.putExtra(EXTRA_BANNER, info.getBanner());
                     intent.putExtra(EXTRA_COUNTRY_FLAG, info.getFlag());
+                    intent.putExtra(EXTRA_ALL_PASSENGERS, nbPassengers);
+                    intent.putExtra(EXTRA_ADULT_PASSENGER, nbAdults);
+                    intent.putExtra(EXTRA_CHILDREN_PASSENGER, nbChildren);
+                    intent.putExtra(EXTRA_ELDERLY_PASSENGER, nbElderly);
 
 
-                    // Toast.makeText(ChooseDateActivity.this, String.valueOf(start_spinner.getSelectedItem()), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChooseDateActivity.this, String.valueOf(info.getRate()), Toast.LENGTH_LONG).show();
 
                     ChooseDateActivity.this.startActivity(intent);
                 }
