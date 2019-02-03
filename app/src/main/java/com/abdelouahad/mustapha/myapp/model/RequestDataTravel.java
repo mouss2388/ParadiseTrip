@@ -55,16 +55,18 @@ public class RequestDataTravel {
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
-                    String key = ds.getKey();
+                    String key;
+                    key = ds.getKey();
                     String value = String.valueOf(ds.getValue());
 
                     if(boolAllData){
+                        assert key != null;
                         getAllData(key,value);
 
                     }else{
@@ -85,7 +87,7 @@ public class RequestDataTravel {
         });
     }
 
-    public void getSomeData(String key, String value){
+    private void getSomeData(String key, String value){
         for (String field: getLabel()){
            // Log.e("RequestDataTravel In", field);
             if(key.contains("airport_"))
@@ -94,7 +96,6 @@ public class RequestDataTravel {
             switch (field) {
 
                 case "Id":
-                    assert key != null;
                     if (key.equals(field)) {
                         setId(Integer.parseInt(value));
                         Log.e("RequestDataTravel Id", String.valueOf(getId()));
@@ -102,7 +103,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Country":
-                    assert key != null;
                     if (key.equals(field)) {
                         setCountry(value);
                         Log.e("RequestDataTravel ", getCountry());
@@ -110,7 +110,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Banner":
-                    assert key != null;
                     if (key.equals(field)) {
                         setBanner(value);
                         Log.e("RequestDataTravel", getBanner());
@@ -118,7 +117,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Description":
-                    assert key != null;
                     if (key.equals(field)) {
                         setDescription(value);
                         Log.e("RequestDataTravel", getDescription());
@@ -126,7 +124,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Price":
-                    assert key != null;
                     if (key.equals(field)) {
                         setPrice(value);
                         Log.e("RequestDataTravel price", getPrice());
@@ -134,7 +131,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Rate":
-                    assert key != null;
                     if (key.equals(field)) {
                         setRate(Integer.parseInt(value));
                         Log.e("RequestDataTravel Rate", String.valueOf(getRate()));
@@ -142,7 +138,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Img_1":
-                    assert key != null;
                     if (key.equals(field)) {
                         setImg_str_1(value);
                         Log.e("RequestDataTravel Img_1", getImg_str_1());
@@ -150,7 +145,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Img_2":
-                    assert key != null;
                     if (key.equals(field)) {
                         setImg_str_2(value);
                         Log.e("RequestDataTravel Img_2", getImg_str_2());
@@ -158,7 +152,6 @@ public class RequestDataTravel {
                     }
                     break;
                 case "Img_3":
-                    assert key != null;
                     if (key.equals(field)) {
                         setImg_str_3(value);
                         Log.e("RequestDataTravel Img_3", getImg_str_3());
@@ -167,13 +160,11 @@ public class RequestDataTravel {
                     break;
 
                 case "Airports":
-                    assert key != null;
                     if(key.contains("airport_")) {
                         this.airports.add(value);
                     }
                     break;
                 case "Flag":
-                    assert key != null;
                     if (key.equals(field)) {
                         setFlag(value);
                         Log.e("RequestDataTravel flag", getFlag());
@@ -184,7 +175,7 @@ public class RequestDataTravel {
         }
     }
 
-    public void getAllData(String key,String value){
+    private void getAllData(String key, String value){
         assert key != null;
         switch (key) {
             case "Id":
@@ -221,7 +212,7 @@ public class RequestDataTravel {
 
     }
 
-    public ArrayList<String> splitRequest(String request){
+    private ArrayList<String> splitRequest(String request){
 
         ArrayList<String> arrayReq= new ArrayList<>();
         if(request.contains("+")) {
@@ -235,11 +226,11 @@ public class RequestDataTravel {
     }
 
 
-    public int getNumberExtractData() {
+    private int getNumberExtractData() {
         return numberExtractData;
     }
 
-    public void setNumberExtractData(int numberExtractData) {
+    private void setNumberExtractData(int numberExtractData) {
         this.numberExtractData = numberExtractData;
     }
 
@@ -247,32 +238,22 @@ public class RequestDataTravel {
         return country;
     }
 
-    public void setCountry(String country) {
+    private void setCountry(String country) {
         this.country = country;
     }
 
-    public ArrayList<String> getLabel() {
+    private ArrayList<String> getLabel() {
         return label;
     }
 
-    public void setLabel(ArrayList<String> label) {
-        this.label = label;
-    }
 
-    public Boolean getBoolAllData() {
-        return boolAllData;
-    }
-
-    public void setLabel(Boolean boolAllData) {
-        this.boolAllData = boolAllData;
-    }
 
 
     public String getBanner() {
         return banner;
     }
 
-    public void setBanner(String banner) {
+    private void setBanner(String banner) {
         this.banner = banner;
     }
 
@@ -280,7 +261,7 @@ public class RequestDataTravel {
         return description;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -288,7 +269,7 @@ public class RequestDataTravel {
         return img_str_1;
     }
 
-    public void setImg_str_1(String img_str_1) {
+    private void setImg_str_1(String img_str_1) {
         this.img_str_1 = img_str_1;
     }
 
@@ -296,7 +277,7 @@ public class RequestDataTravel {
         return img_str_2;
     }
 
-    public void setImg_str_2(String img_str_2) {
+    private void setImg_str_2(String img_str_2) {
         this.img_str_2 = img_str_2;
     }
 
@@ -304,7 +285,7 @@ public class RequestDataTravel {
         return img_str_3;
     }
 
-    public void setImg_str_3(String img_str_3) {
+    private void setImg_str_3(String img_str_3) {
         this.img_str_3 = img_str_3;
     }
 
@@ -328,7 +309,7 @@ public class RequestDataTravel {
         return rate;
     }
 
-    public void setRate(int rate) {
+    private void setRate(int rate) {
         this.rate = rate;
     }
 
@@ -336,15 +317,11 @@ public class RequestDataTravel {
         return airports;
     }
 
-    public void setAirports(ArrayList<String> airports) {
-        this.airports = airports;
-    }
-
     public String getFlag() {
         return flag;
     }
 
-    public void setFlag(String flag) {
+    private void setFlag(String flag) {
         this.flag = flag;
     }
 }

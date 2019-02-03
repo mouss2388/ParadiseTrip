@@ -41,8 +41,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         TextView destination;
         TextView start_date, return_date;
         ImageView imageView;
-        String start_hour, return_hour;
-        String tel, duration;
+
     }
 
     /**
@@ -51,7 +50,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
      * @param resource
      * @param objects
      */
-    public CompagnyListAdapter(Context context, int resource, ArrayList<Compagny> objects) {
+    CompagnyListAdapter(Context context, int resource, ArrayList<Compagny> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -62,7 +61,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         //get the persons information
         String price = getItem(position).getPrice();
         String destination = getItem(position).getDestination();

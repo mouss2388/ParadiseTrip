@@ -1,5 +1,6 @@
 package com.abdelouahad.mustapha.myapp.controller;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -11,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -86,12 +86,13 @@ public class ChooseDateActivity extends AppCompatActivity {
 
 
         final RequestDataTravel info = new RequestDataTravel("Banner+Country+Airports+Rate+Flag");
-        final ArrayList<String>[] listAirports = new ArrayList[1];
+        final ArrayList[] listAirports = new ArrayList[1];
         final List<String> spinnerArray = new ArrayList<>();
 
 
 
         info.getData("TRAVEL_" +travelId, new FirebaseCallback() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onCallback() {
                 country_name.setText("Destination: "+info.getCountry());
@@ -103,7 +104,7 @@ public class ChooseDateActivity extends AppCompatActivity {
 
                 }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(
                         ChooseDateActivity.this, android.R.layout.simple_spinner_item, spinnerArray);
                 /////
                 // (4) set the adapter on the spinner
@@ -126,21 +127,6 @@ public class ChooseDateActivity extends AppCompatActivity {
 
                     }
                 });*/
-                return_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String selectedItemText = (String) parent.getItemAtPosition(position);
-                        // Notify the selected item text
-                        Toast.makeText
-                                (getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT)
-                                .show();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
 
             }});
 
@@ -250,11 +236,6 @@ public class ChooseDateActivity extends AppCompatActivity {
                             }, year, month, day);
 
 
-                    long datePicjerD = datePickerDialogStart.getDatePicker().getMonth();
-                    int dayP=datePickerDialogStart.getDatePicker().getDayOfMonth();
-                    int monthP= datePickerDialogStart.getDatePicker().getMonth();
-                    int yearP= datePickerDialogStart.getDatePicker().getYear();
-                    long date = datePickerDialogStart.getDatePicker().getMinDate();
 
                     Calendar calendar = Calendar.getInstance();
                     calendar.set(datePickerDialogStart.getDatePicker().getYear(), datePickerDialogStart.getDatePicker().getMonth(), datePickerDialogStart.getDatePicker().getDayOfMonth(),

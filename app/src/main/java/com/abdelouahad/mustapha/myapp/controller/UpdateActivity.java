@@ -38,7 +38,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     private final String EMAIL_PATTERN ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-    private Matcher matcher;
+    protected Matcher matcher;
     private EditText name,firstname,email,password;
     private Button btn_update,btn_delete;
     SharedPreferences prefs;
@@ -86,6 +86,7 @@ public class UpdateActivity extends AppCompatActivity {
     private void deleteUser(final FirebaseUser user){
         String email = user.getEmail();
         String psswrd = restoredPasswrd;
+        assert email != null;
         AuthCredential credential = EmailAuthProvider
                 .getCredential(email, psswrd);
 
@@ -115,6 +116,7 @@ public class UpdateActivity extends AppCompatActivity {
                 });
     }
 
+    @SuppressLint("SetTextI18n")
     private void userSignIn(){
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -255,6 +257,7 @@ public class UpdateActivity extends AppCompatActivity {
         if (view == null) {
             view = new View(activity);
         }
+        assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 

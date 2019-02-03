@@ -21,7 +21,7 @@ import static com.abdelouahad.mustapha.myapp.controller.MainActivity.VIBRATOR_EN
 public class Settings extends AppCompatActivity {
 
     private CheckBox checkBxVibrator, checkBxSound;
-    private Switch switchNotif, nigthMode;
+    protected Switch nigthMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class Settings extends AppCompatActivity {
 
         checkBxVibrator = findViewById(R.id.chckBxVibrator);
         checkBxSound = findViewById(R.id.chckBxSound);
-        switchNotif= findViewById(R.id.switchNotif);
+        Switch switchNotif = findViewById(R.id.switchNotif);
         nigthMode=findViewById(R.id.switchNight);
 
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.reservation);
@@ -57,13 +57,9 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (checkBxVibrator.isChecked()) {
-                    VIBRATOR_ENABLE = true;
-                    //  Vibrator vb = (Vibrator)   getSystemService(Context.VIBRATOR_SERVICE);
-                    // vb.vibrate(100);
-                }else{
-                    VIBRATOR_ENABLE = false;
-                }
+                //  Vibrator vb = (Vibrator)   getSystemService(Context.VIBRATOR_SERVICE);
+// vb.vibrate(100);
+                VIBRATOR_ENABLE = checkBxVibrator.isChecked();
 
             }
         });
@@ -73,10 +69,7 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (checkBxSound.isChecked()) {
-                    SOUND_ENABLED = true;
-                }else
-                    SOUND_ENABLED = false;
+                SOUND_ENABLED = checkBxSound.isChecked();
             }
         });
 
@@ -97,11 +90,7 @@ public class Settings extends AppCompatActivity {
 
         nigthMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    NIGHT_ENABLE=true;
-                }else{
-                    NIGHT_ENABLE=false;
-                }
+                NIGHT_ENABLE = isChecked;
             }
         });
     }

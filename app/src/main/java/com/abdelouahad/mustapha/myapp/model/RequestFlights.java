@@ -1,6 +1,8 @@
 package com.abdelouahad.mustapha.myapp.model;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -9,12 +11,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class RequestFlights {
 
     private String price;
     private String logo;
-    private String startDate;
-    private String returnDate;
     private String id;
     private String name_compagny;
     private String destination;
@@ -36,32 +38,34 @@ public class RequestFlights {
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value;
 
                 for (DataSnapshot compagny_flight: dataSnapshot.getChildren()) {
-                    if(compagny_flight.getKey().equals(compagny)) {
+                    assert compagny!=null;
+                    if(Objects.equals(compagny_flight.getKey(), compagny)) {
                         value = compagny_flight.getKey();
                         setName_compagny(value);
                         Log.i("RequestFlights", getName_compagny());
                         for (DataSnapshot data : compagny_flight.getChildren()) {
-                            if (data.getKey().equals("Price")) {
+                            if (Objects.equals(data.getKey(), "Price")) {
                                 value = String.valueOf(data.getValue());
                                 setPrice(value);
-                            } else if (data.getKey().equals("Logo")) {
+                            } else if (Objects.equals(data.getKey(), "Logo")) {
                                 value = String.valueOf(data.getValue());
                                 setLogo(value);
-                            }else if (data.getKey().equals("ReturnHour")) {
+                            }else if (Objects.equals(data.getKey(), "ReturnHour")) {
                                 value = String.valueOf(data.getValue());
                                 setReturnHour(value);
-                            }else if (data.getKey().equals("StartHour")) {
+                            }else if (Objects.equals(data.getKey(), "StartHour")) {
                                 value = String.valueOf(data.getValue());
                                 setStartHour(value);
-                            }else if (data.getKey().equals("Tel")) {
+                            }else if (Objects.equals(data.getKey(), "Tel")) {
                                 value = String.valueOf(data.getValue());
                                 setTel(value);
-                            }else if (data.getKey().equals("Duration")) {
+                            }else if (Objects.equals(data.getKey(), "Duration")) {
                                 value = String.valueOf(data.getValue());
                                 setDuration(value);
                             }
@@ -101,25 +105,11 @@ public class RequestFlights {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    private void setLogo(String logo) {
         this.logo = logo;
     }
 
-    public String getstartDate() {
-        return startDate;
-    }
 
-    public void setstartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getreturnDate() {
-        return returnDate;
-    }
-
-    public void setreturnDate(String returnDate) {
-        this.returnDate = returnDate;
-    }
     public String getId() {
         return id;
     }
@@ -132,7 +122,7 @@ public class RequestFlights {
         return name_compagny;
     }
 
-    public void setName_compagny(String name_compagny) {
+    private void setName_compagny(String name_compagny) {
         this.name_compagny = name_compagny;
     }
 
@@ -140,7 +130,7 @@ public class RequestFlights {
         return startHour;
     }
 
-    public void setStartHour(String startHour) {
+    private void setStartHour(String startHour) {
         this.startHour = startHour;
     }
 
@@ -148,7 +138,7 @@ public class RequestFlights {
         return returnHour;
     }
 
-    public void setReturnHour(String returnHour) {
+    private void setReturnHour(String returnHour) {
         this.returnHour = returnHour;
     }
 
@@ -156,7 +146,7 @@ public class RequestFlights {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    private void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -164,7 +154,7 @@ public class RequestFlights {
         return tel;
     }
 
-    public void setTel(String tel) {
+    private void setTel(String tel) {
         this.tel = tel;
     }
 }

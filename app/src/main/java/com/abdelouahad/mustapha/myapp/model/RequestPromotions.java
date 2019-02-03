@@ -1,7 +1,9 @@
 package com.abdelouahad.mustapha.myapp.model;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -12,27 +14,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class RequestPromotions {
 
-    private String label;
     private String img;
 
     public RequestPromotions() {
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     public String getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    private void setImg(String img) {
         this.img = img;
     }
 
@@ -45,6 +40,7 @@ public class RequestPromotions {
 
 
         myRef.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @SuppressLint("LongLogTag")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -53,7 +49,7 @@ public class RequestPromotions {
 
                 for (DataSnapshot image : dataSnapshot.getChildren()) {
                     Log.e("Promotions Img", image.getKey() +" : "+image.getValue());
-                    if(image.getKey().contains(String.valueOf(indx))) {
+                    if(Objects.requireNonNull(image.getKey()).contains(String.valueOf(indx))) {
                         setImg(String.valueOf(image.getValue()));
                         break;
                     }

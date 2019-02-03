@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.abdelouahad.mustapha.myapp.R;
 import com.abdelouahad.mustapha.myapp.model.Compagny;
@@ -52,19 +51,19 @@ public class ListMyTravels extends AppCompatActivity {
         final RequestMyTravels myTravels = new RequestMyTravels();
 
 
-        for(int indx = 0; indx< COMPANIES_AVAILABLE.length; indx++) {
-            myTravels.getData("USERS", COMPANIES_AVAILABLE[indx], new FirebaseCallback() {
+        for (String aCOMPANIES_AVAILABLE : COMPANIES_AVAILABLE) {
+            myTravels.getData("USERS", aCOMPANIES_AVAILABLE, new FirebaseCallback() {
                 @Override
                 public void onCallback() {
 
-                    for(RequestMyTravels mTravel : myTravels.getmList()){
+                    for (RequestMyTravels mTravel : myTravels.getmList()) {
                         Log.i("ListMyTravels", " name: " + mTravel.getTo_country() + " price: " + mTravel.getPrice());
 
-                        Compagny compagny = new Compagny(mTravel.getPrice(),mTravel.getTo_country(),
+                        Compagny compagny = new Compagny(mTravel.getPrice(), mTravel.getTo_country(),
                                 mTravel.getStart_date(), mTravel.getReturn_date(),
-                                img,mTravel.getLogo(),mTravel.getName(),
-                                mTravel.getStart_hour(),mTravel.getReturn_hour(),
-                                mTravel.getTel(),mTravel.getDuration());
+                                img, mTravel.getLogo(), mTravel.getName(),
+                                mTravel.getStart_hour(), mTravel.getReturn_hour(),
+                                mTravel.getTel(), mTravel.getDuration());
 
                         compagniesList.add(compagny);
                     }
@@ -74,19 +73,12 @@ public class ListMyTravels extends AppCompatActivity {
 
                     mListView.setAdapter(adapter);
 
-                    mListView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             if (user != null) {
-                                String tag_name_compagny = compagniesList.get(position).getName();
-                                String tag_logo_base64 = compagniesList.get(position).getImageBase64();
-                                String tag_start_date = compagniesList.get(position).getStart_date();
-                                String tag_return_date = compagniesList.get(position).getReturn_date();
-                                String tag_price = compagniesList.get(position).getPrice();
-
-                                Toast.makeText(ListMyTravels.this, tag_name_compagny+" "+ tag_price, Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(ListMyTravels.this, MyTravel.class);
                                 ListMyTravels.this.startActivity(intent);

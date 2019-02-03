@@ -1,7 +1,10 @@
 package com.abdelouahad.mustapha.myapp.model;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RequestMyTravels {
 
@@ -45,14 +49,13 @@ public class RequestMyTravels {
         mList = new ArrayList<>();
     }
 
-    public RequestMyTravels(String price, String logo, String start_date, String return_date, String id, String name, String tel, String duration, String start_airport, String return_airport, String start_hour, String return_hour, String to_country, String banner, String classe, String nbChildren, String nbAdults, String nbPassengers, String nbEderly, String rating) {
+    private RequestMyTravels(String price, String logo, String start_date, String return_date, String id, String name, String tel, String duration, String start_airport, String return_airport, String start_hour, String return_hour, String to_country, String banner, String classe, String nbChildren, String nbAdults, String nbPassengers, String nbEderly, String rating) {
         this.price = price;
         this.logo = logo;
         this.start_date = start_date;
         this.return_date = return_date;
         this.id = id;
         this.name = name;
-        this.mList = mList;
         this.tel = tel;
         this.duration = duration;
         this.start_airport = start_airport;
@@ -70,11 +73,6 @@ public class RequestMyTravels {
     }
 
 
-
-    public RequestMyTravels(String id){
-        this.id=id;
-    }
-
     public String getPrice() {
         return price;
     }
@@ -87,7 +85,7 @@ public class RequestMyTravels {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    private void setLogo(String logo) {
         this.logo = logo;
     }
 
@@ -95,7 +93,7 @@ public class RequestMyTravels {
         return start_date;
     }
 
-    public void setStart_date(String start_date) {
+    private void setStart_date(String start_date) {
         this.start_date = start_date;
     }
 
@@ -103,7 +101,7 @@ public class RequestMyTravels {
         return return_date;
     }
 
-    public void setReturn_date(String return_date) {
+    private void setReturn_date(String return_date) {
         this.return_date = return_date;
     }
     public String getId() {
@@ -117,19 +115,20 @@ public class RequestMyTravels {
     public void getData(String rootPath, final String name_compagny_target, final FirebaseCallback firebaseCallback) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(rootPath);
-        String value="";
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
             // Read from the database
             myRef.addValueEventListener(new ValueEventListener() {
+                @TargetApi(Build.VERSION_CODES.KITKAT)
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @SuppressLint("LongLogTag")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String value;
                     mList.clear();
                     for (DataSnapshot Uid : dataSnapshot.getChildren()) {
-                        if (Uid.getKey().equals(user.getUid())) {
+                        if (Objects.requireNonNull(Uid.getKey()).equals(user.getUid())) {
                             Log.e("ReqyestMyTravels",Uid.getKey());
                             Log.e("ReqyestMyTravels uid",user.getUid());
 
@@ -150,36 +149,36 @@ public class RequestMyTravels {
 
                                                 for (DataSnapshot values : compagnies.getChildren()) {
                                                     Log.e("ReqyestMyTravels  key ", values.getKey() + " value: " + values.getValue());
-                                                    if (values.getKey().equals("Price")) {
-                                                        Log.e("Price", values.getValue().toString());
+                                                    if (Objects.equals(values.getKey(), "Price")) {
+                                                        Log.e("Price", Objects.requireNonNull(values.getValue()).toString());
 
                                                         value = String.valueOf(values.getValue());
                                                         setPrice(value);
-                                                    } else if (values.getKey().equals("Logo")) {
+                                                    } else if (Objects.equals(values.getKey(), "Logo")) {
                                                         value = String.valueOf(values.getValue());
                                                         setLogo(value);
-                                                    } else if (values.getKey().equals("StartDate")) {
+                                                    } else if (Objects.equals(values.getKey(), "StartDate")) {
                                                         value = String.valueOf(values.getValue());
                                                         setStart_date(value);
-                                                    } else if (values.getKey().equals("ReturnDate")) {
+                                                    } else if (Objects.equals(values.getKey(), "ReturnDate")) {
                                                         value = String.valueOf(values.getValue());
                                                         setReturn_date(value);
-                                                    }  else if (values.getKey().equals("Rating")) {
+                                                    }  else if (Objects.equals(values.getKey(), "Rating")) {
                                                         value = String.valueOf(values.getValue());
                                                         setRating(value);
-                                                    } else if (values.getKey().equals("StartHour")) {
+                                                    } else if (Objects.equals(values.getKey(), "StartHour")) {
                                                         value = String.valueOf(values.getValue());
                                                         setRating(value);
-                                                    } else if (values.getKey().equals("ReturnHour")) {
+                                                    } else if (Objects.equals(values.getKey(), "ReturnHour")) {
                                                         value = String.valueOf(values.getValue());
                                                         setRating(value);
-                                                    }else if (values.getKey().equals("Tel")) {
+                                                    }else if (Objects.equals(values.getKey(), "Tel")) {
                                                         value = String.valueOf(values.getValue());
                                                         setTel(value);
-                                                    }else if (values.getKey().equals("Duration")) {
+                                                    }else if (Objects.equals(values.getKey(), "Duration")) {
                                                         value = String.valueOf(values.getValue());
                                                         setDuration(value);
-                                                    }else if (values.getKey().equals("ToCountry")) {
+                                                    }else if (Objects.equals(values.getKey(), "ToCountry")) {
                                                         value = String.valueOf(values.getValue());
                                                         setTo_country(value);
                                                     }
@@ -224,15 +223,11 @@ public class RequestMyTravels {
         return mList;
     }
 
-    public void setmList(ArrayList<RequestMyTravels> mList) {
-        this.mList = mList;
-    }
-
     public String getTel() {
         return tel;
     }
 
-    public void setTel(String tel) {
+    private void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -240,97 +235,60 @@ public class RequestMyTravels {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    private void setDuration(String duration) {
         this.duration = duration;
     }
 
-    public String getStart_airport() {
+    private String getStart_airport() {
         return start_airport;
     }
 
-    public void setStart_airport(String start_airport) {
-        this.start_airport = start_airport;
-    }
-
-    public String getReturn_airport() {
+    private String getReturn_airport() {
         return return_airport;
     }
 
-    public void setReturn_airport(String return_airport) {
-        this.return_airport = return_airport;
-    }
 
     public String getStart_hour() {
         return start_hour;
     }
 
-    public void setStart_hour(String start_hour) {
-        this.start_hour = start_hour;
-    }
 
     public String getReturn_hour() {
         return return_hour;
     }
 
-    public void setReturn_hour(String return_hour) {
-        this.return_hour = return_hour;
-    }
 
 
 
-    public String getBanner() {
+    private String getBanner() {
         return banner;
     }
 
-    public void setBanner(String banner) {
-        this.banner = banner;
-    }
-
-    public String getClasse() {
+    private String getClasse() {
         return classe;
     }
 
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
-    public String getNbChildren() {
+    private String getNbChildren() {
         return nbChildren;
     }
 
-    public void setNbChildren(String nbChildren) {
-        this.nbChildren = nbChildren;
-    }
-
-    public String getNbAdults() {
+    private String getNbAdults() {
         return nbAdults;
     }
 
-    public void setNbAdults(String nbAdults) {
-        this.nbAdults = nbAdults;
-    }
-
-    public String getNbPassengers() {
+    private String getNbPassengers() {
         return nbPassengers;
     }
 
-    public void setNbPassengers(String nbPassengers) {
-        this.nbPassengers = nbPassengers;
-    }
-
-    public String getNbEderly() {
+    private String getNbEderly() {
         return nbEderly;
     }
 
-    public void setNbEderly(String nbEderly) {
-        this.nbEderly = nbEderly;
-    }
-
-    public String getRating() {
+    private String getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    private void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -338,7 +296,7 @@ public class RequestMyTravels {
         return to_country;
     }
 
-    public void setTo_country(String to_country) {
+    private void setTo_country(String to_country) {
         this.to_country = to_country;
     }
 }

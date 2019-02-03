@@ -58,7 +58,7 @@ public class ChooseDestination extends AppCompatActivity {
 
                     spinnerArray.add(info[finalI].getCountry());
                     // (3) create an adapter from the list
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
                             ChooseDestination.this, android.R.layout.simple_spinner_item, spinnerArray);
 
                     // (4) set the adapter on the spinner
@@ -67,7 +67,6 @@ public class ChooseDestination extends AppCompatActivity {
                     spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String selectedItemText = (String) parent.getItemAtPosition(position);
                             // Notify the selected item text
                             Toast.makeText
                                     (getApplicationContext(), "Selected : " + position, Toast.LENGTH_SHORT)

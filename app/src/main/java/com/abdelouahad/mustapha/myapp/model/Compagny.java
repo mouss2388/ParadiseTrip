@@ -33,10 +33,6 @@ public class Compagny {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getDestination() {
         return destination;
     }
@@ -49,32 +45,16 @@ public class Compagny {
         return start_date;
     }
 
-    public void setStart_date(String start_date) {
-        this.start_date = start_date;
-    }
-
     public String getReturn_date() {
         return return_date;
-    }
-
-    public void setReturn_date(String return_date) {
-        this.return_date = return_date;
     }
 
     public ImageView getImageView() {
         return imageView;
     }
 
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
-    }
-
     public String getImageBase64() {
         return ImageBase64;
-    }
-
-    public void setImageBase64(String imageBase64) {
-        ImageBase64 = imageBase64;
     }
 
     public String getName() {
@@ -89,31 +69,16 @@ public class Compagny {
         return start_hour;
     }
 
-    public void setStart_hour(String start_hour) {
-        this.start_hour = start_hour;
-    }
-
     public String getReturn_hour() {
         return return_hour;
-    }
-
-    public void setReturn_hour(String return_hour) {
-        this.return_hour = return_hour;
     }
 
     public String getTel() {
         return tel;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     public String getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
 }

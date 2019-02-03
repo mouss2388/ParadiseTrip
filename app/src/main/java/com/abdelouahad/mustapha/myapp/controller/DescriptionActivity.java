@@ -1,5 +1,6 @@
 package com.abdelouahad.mustapha.myapp.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -79,6 +80,7 @@ public class DescriptionActivity extends AppCompatActivity {
         final RequestDataTravel info = new RequestDataTravel();
         info.getData("TRAVEL_"+travelId,new FirebaseCallback() {
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onCallback() {
                 byte[] decodedString = Base64.decode(String.valueOf(info.getBanner()), Base64.DEFAULT);
@@ -116,7 +118,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
 
 
-        byte[] decodedString=null;
+        byte[] decodedString;
 
         for(int i=0;i<3;i++)
         {

@@ -42,24 +42,19 @@ import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_ID;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private NavigationView navigationView;
-    private int[] mImgIds;
     private LayoutInflater mInflater;
-    private Boolean login_state= false;
     protected Button yourDestination;
     private TextView name, email;
 
 
     public static Boolean NOTIF_ENABLE=false, SOUND_ENABLED= false, VIBRATOR_ENABLE= false, NIGHT_ENABLE=false;
 
-    private Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
         View headerLayout = navigationView.getHeaderView(0);
 
@@ -74,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         initData();
         initView();
 
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
 
 
@@ -171,14 +166,12 @@ public class MainActivity extends AppCompatActivity
     //Tab contenant les images des destinations
     private void initData()
     {
-        mImgIds = new int[] { R.drawable.paris, R.drawable.ibiza, R.drawable.new_york, R.drawable.paris, R.drawable.ibiza
+        int[] mImgIds = new int[]{R.drawable.paris, R.drawable.ibiza, R.drawable.new_york, R.drawable.paris, R.drawable.ibiza
         };
     }
 
     private void initView()
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference []myRef = new DatabaseReference[5];
         // DatabaseReference myRef = database.getReference("test");
         final LinearLayout gallery = findViewById(R.id.id_gallery);
 
@@ -308,7 +301,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected( MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         Intent intent ;
         switch (item.getItemId()) {

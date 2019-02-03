@@ -99,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final FirebaseUser user = mAuth.getCurrentUser();
 
+        assert user != null;
         user.reauthenticate(credential)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -164,6 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("LoginAcitivty", "signInWithEmail:success");
                             final FirebaseUser user = mAuth.getCurrentUser();
+                            assert user != null;
                             Toast.makeText(getApplicationContext(), "Success! "+user.getEmail()+" : "+password, Toast.LENGTH_SHORT).show();
 
                             String fullName = firstname.getText()+" "+name.getText();

@@ -16,7 +16,6 @@ import java.net.InetAddress;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT= 3000;
     private boolean networkOk= false;
     ProgressDialog pd =null;
     @Override
@@ -24,6 +23,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        int SPLASH_TIME_OUT = 3000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -42,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 finish();
             }
-        },SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);
 
 
     }

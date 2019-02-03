@@ -86,10 +86,10 @@ public class Result extends AppCompatActivity {
 
         final RequestFlights flights = new RequestFlights("ALL");
 
-        for(int indx = 0; indx< COMPANIES_AVAILABLE.length; indx++) {
+        for (String aCOMPANIES_AVAILABLE : COMPANIES_AVAILABLE) {
 
 
-            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId+"/COMPAGNIES/", COMPANIES_AVAILABLE[indx], new FirebaseCallback() {
+            flights.getData("FLIGHTS_AVAILABLE/ID_" + travelId + "/COMPAGNIES/", aCOMPANIES_AVAILABLE, new FirebaseCallback() {
                 @Override
                 public void onCallback() {
 
@@ -98,15 +98,15 @@ public class Result extends AppCompatActivity {
                     String return_date = getIntent().getStringExtra(EXTRA_RETURN_DATE);
                     String price = flights.getPrice();
                     String name_compagny = flights.getName_compagny();
-                    String start_hour=flights.getStartHour();
-                    String return_hour=flights.getReturnHour();
-                    String tel =flights.getTel();
+                    String start_hour = flights.getStartHour();
+                    String return_hour = flights.getReturnHour();
+                    String tel = flights.getTel();
                     String duration = flights.getDuration();
 
                     final String destination = getIntent().getStringExtra(EXTRA_COUNTRY_NAME);
 
                     Toast.makeText(Result.this, "Name Compagny : " + name_compagny, Toast.LENGTH_SHORT).show();
-                    final Compagny compagny = new Compagny(price, destination,start_date,return_date,img,logo,name_compagny,start_hour,return_hour,tel,duration);
+                    final Compagny compagny = new Compagny(price, destination, start_date, return_date, img, logo, name_compagny, start_hour, return_hour, tel, duration);
                     compagniesList.add(compagny);
 
                     final CompagnyListAdapter adapter = new CompagnyListAdapter(Result.this, R.layout.adapter_view_layout, compagniesList);
@@ -114,7 +114,7 @@ public class Result extends AppCompatActivity {
 
                     mListView.setAdapter(adapter);
 
-                    mListView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -168,9 +168,6 @@ public class Result extends AppCompatActivity {
                                 myRef.add(database.getReference(rootPathUsers + "Duration"));
 
 
-
-
-
                                 for (DatabaseReference ref : myRef) {
                                     if (ref.getPath().toString().equals(rootPathUsers + "Price")) {
                                         ref.setValue(tag_price);
@@ -180,35 +177,35 @@ public class Result extends AppCompatActivity {
                                         ref.setValue(tag_return_date);
                                     } else if (ref.getPath().toString().equals(rootPathUsers + "Logo")) {
                                         ref.setValue(tag_logo_base64);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "Banner")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Banner")) {
                                         ref.setValue(banner);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "NbPassengers")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "NbPassengers")) {
                                         ref.setValue(nbPasengers);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "NbAdults")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "NbAdults")) {
                                         ref.setValue(nbAdults);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "NbChildren")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "NbChildren")) {
                                         ref.setValue(nbChildrens);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "NbElderly")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "NbElderly")) {
                                         ref.setValue(nbElderly);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "Rating")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Rating")) {
                                         ref.setValue(rating);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "StartAirport")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "StartAirport")) {
                                         ref.setValue(start_airports);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "ReturnAirport")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "ReturnAirport")) {
                                         ref.setValue(return_airports);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "ToCountry")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "ToCountry")) {
                                         ref.setValue(destination);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "Flag")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Flag")) {
                                         ref.setValue(flag);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "Class")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Class")) {
                                         ref.setValue(classe);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "StartHour")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "StartHour")) {
                                         ref.setValue(start_hour);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "ReturnHour")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "ReturnHour")) {
                                         ref.setValue(return_hour);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "Tel")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Tel")) {
                                         ref.setValue(tel);
-                                    }else if (ref.getPath().toString().equals(rootPathUsers + "Duration")) {
+                                    } else if (ref.getPath().toString().equals(rootPathUsers + "Duration")) {
                                         ref.setValue(duration);
                                     }
                                 }
