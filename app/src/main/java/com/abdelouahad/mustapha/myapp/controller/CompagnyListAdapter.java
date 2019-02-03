@@ -38,7 +38,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
      */
     private static class ViewHolder {
         TextView price;
-        TextView classe;
+        TextView destination;
         TextView start_date, return_date;
         ImageView imageView;
         String start_hour, return_hour;
@@ -92,7 +92,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
             convertView = inflater.inflate(mResource, parent, false);
             holder= new ViewHolder();
             holder.price = convertView.findViewById(R.id.price);
-            holder.classe =  convertView.findViewById(R.id.classe);
+            holder.destination =  convertView.findViewById(R.id.destination);
             holder.start_date =  convertView.findViewById(R.id.start_date);
             holder.return_date = convertView.findViewById(R.id.return_date);
             holder.imageView = convertView.findViewById(R.id.logo);
@@ -113,7 +113,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
         lastPosition = position;
 
         holder.price.setText(compagny.getPrice());
-        holder.classe.setText(compagny.getDestination());
+        holder.destination.setText(compagny.getDestination());
         holder.start_date.setText(compagny.getStart_date());
         holder.return_date.setText(compagny.getReturn_date());
 
