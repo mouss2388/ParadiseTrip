@@ -6,12 +6,14 @@
     tools:context=".controller.MyTravel"
     android:orientation="vertical">
 
-    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ImageView
         android:id="@+id/header_travel"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:scaleType="fitXY"
         android:background="@drawable/panorama_beach"
         android:contentDescription="@string/picture_from_firebase" />
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,7 +82,7 @@
                         android:id="@+id/logo_compagny"
                         android:layout_width="57dp"
                         android:layout_height="57dp"
-                        android:background="@drawable/backgrnd" />
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -145,7 +147,7 @@
                         android:id="@+id/flag_country"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:background="@drawable/panorama" />
+                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -324,7 +326,6 @@
                         android:background="@drawable/airplane_take_off"/>
 
                     <LinearLayout
-                        android:id="@+id/linearTest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -368,6 +369,26 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="start_date"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Heure: " />
+
+                            <TextView
+                                android:id="@+id/start_hour_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0h00min"
                                 android:textStyle="italic" />
                         </LinearLayout>
 
@@ -462,6 +483,27 @@
                                 android:text="return_date"
                                 android:textStyle="italic" />
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Heure: " />
+
+                            <TextView
+                                android:id="@+id/return_hour_detail"
+                                style="@style/AppTheme.TextCustom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0h00min"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

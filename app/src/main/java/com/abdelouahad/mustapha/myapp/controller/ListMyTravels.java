@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 import static com.abdelouahad.mustapha.myapp.model.EXTRA.COMPANIES_AVAILABLE;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COMPAGNY_NAME;
+import static com.abdelouahad.mustapha.myapp.model.EXTRA.EXTRA_COUNTRY_ID;
 
 
 public class ListMyTravels extends AppCompatActivity {
@@ -57,9 +59,9 @@ public class ListMyTravels extends AppCompatActivity {
                 public void onCallback() {
 
                     for (RequestMyTravels mTravel : myTravels.getmList()) {
-                        Log.i("ListMyTravels", " name: " + mTravel.getTo_country() + " price: " + mTravel.getPrice());
+                        Log.i("ListMyTravels", " name: " + mTravel.getToCountry() + " price: " + mTravel.getPrice());
 
-                        Compagny compagny = new Compagny(mTravel.getPrice(), mTravel.getTo_country(),
+                        Compagny compagny = new Compagny(mTravel.getId(),mTravel.getPrice(), mTravel.getToCountry(),
                                 mTravel.getStart_date(), mTravel.getReturn_date(),
                                 img, mTravel.getLogo(), mTravel.getName(),
                                 mTravel.getStart_hour(), mTravel.getReturn_hour(),
@@ -81,6 +83,8 @@ public class ListMyTravels extends AppCompatActivity {
                             if (user != null) {
 
                                 Intent intent = new Intent(ListMyTravels.this, MyTravel.class);
+                                intent.putExtra(EXTRA_COUNTRY_ID, compagniesList.get(position).getId());
+                                intent.putExtra(EXTRA_COMPAGNY_NAME, compagniesList.get(position).getName());
                                 ListMyTravels.this.startActivity(intent);
 
                             }

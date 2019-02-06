@@ -3,6 +3,7 @@ package com.abdelouahad.mustapha.myapp.model;
 import android.widget.ImageView;
 
 public class Compagny {
+    private String id;
     private String price;
     private String destination;
     private String start_date;
@@ -15,7 +16,8 @@ public class Compagny {
     private String tel;
     private String duration;
 
-    public Compagny(String price, String destination, String start_date, String return_date, ImageView imageView, String imageBase64, String name, String start_hour, String return_hour, String tel, String duration) {
+    public Compagny(String id,String price, String destination, String start_date, String return_date, ImageView imageView, String imageBase64, String name, String start_hour, String return_hour, String tel, String duration) {
+        this.id=id;
         this.price = price;
         this.destination = destination;
         this.start_date = start_date;
@@ -27,6 +29,10 @@ public class Compagny {
         this.return_hour = return_hour;
         this.tel = tel;
         this.duration = duration;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getPrice() {

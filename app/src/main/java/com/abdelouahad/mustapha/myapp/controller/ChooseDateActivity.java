@@ -174,8 +174,6 @@ public class ChooseDateActivity extends AppCompatActivity {
                     intent.putExtra(EXTRA_RETURN_AIRPORT, returnAirport);
                     intent.putExtra(EXTRA_RATING, info.getRate());
                     intent.putExtra(EXTRA_CLASS, classe);
-                    intent.putExtra(EXTRA_BANNER, info.getBanner());
-                    intent.putExtra(EXTRA_COUNTRY_FLAG, info.getFlag());
                     intent.putExtra(EXTRA_ALL_PASSENGERS, nbPassengers);
                     intent.putExtra(EXTRA_ADULT_PASSENGER, nbAdults);
                     intent.putExtra(EXTRA_CHILDREN_PASSENGER, nbChildren);

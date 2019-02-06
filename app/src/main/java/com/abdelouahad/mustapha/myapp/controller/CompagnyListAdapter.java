@@ -63,6 +63,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         //get the persons information
+        String id = getItem(position).getId();
         String price = getItem(position).getPrice();
         String destination = getItem(position).getDestination();
         String start_date = getItem(position).getStart_date();
@@ -77,7 +78,7 @@ public class CompagnyListAdapter extends ArrayAdapter<Compagny> {
 
         //Create the person object with the information
         //Compagny compagny = new Compagny(name_compagny,price,destination,start_date,return_date,start_hour,return_hour,imageView, imageBase64,tel,duration);
-        Compagny compagny = new Compagny(price, destination,start_date,return_date,imageView,imageBase64,name_compagny,start_hour,return_hour,tel,duration);
+        Compagny compagny = new Compagny(id,price, destination,start_date,return_date,imageView,imageBase64,name_compagny,start_hour,return_hour,tel,duration);
 
         //create the view result for showing the animation
         final View result;

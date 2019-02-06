@@ -13,11 +13,14 @@ public class EXTRA {
     public static String EXTRA_CHILDREN_PASSENGER = "EXTRA_CHILDREN_PASSENGER";
     public static String EXTRA_ADULT_PASSENGER = "EXTRA_ADULT_PASSENGER";
     public static String EXTRA_ELDERLY_PASSENGER = "EXTRA_ELDERLY_PASSENGER";
+    public static String EXTRA_LOGO = "EXTRA_LOGO";
     public static String EXTRA_CLASS = "EXTRA_CLASS";
     public static String EXTRA_FLIGHT_DURATION = "EXTRA_FLIGHT_DURATION";
     public static String EXTRA_RATING = "EXTRA_RATING";
     public static String EXTRA_COUNTRY_FLAG = "EXTRA_COUNTRY_FLAG";
-    public static String EXTRA_BANNER = "EXTRA_COUNTRY_FLAG";
+    public static String EXTRA_BANNER = "EXTRA_BANNER";
     public static String EXTRA_COMPAGNY_TEL = "EXTRA_COMPAGNY_TEL";
+    public static String EXTRA_COMPAGNY_NAME = "EXTRA_COMPAGNY_NAME";
+
     public static String EXTRA_PRICE = "EXTRA_PRICE";
 }

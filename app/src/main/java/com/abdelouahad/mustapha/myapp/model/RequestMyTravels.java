@@ -33,7 +33,7 @@ public class RequestMyTravels {
     private String return_airport;
     private String start_hour;
     private String return_hour;
-    private String to_country;
+    private String toCountry;
     private String banner;
     private String classe;
     private String nbChildren;
@@ -49,7 +49,7 @@ public class RequestMyTravels {
         mList = new ArrayList<>();
     }
 
-    private RequestMyTravels(String price, String logo, String start_date, String return_date, String id, String name, String tel, String duration, String start_airport, String return_airport, String start_hour, String return_hour, String to_country, String banner, String classe, String nbChildren, String nbAdults, String nbPassengers, String nbEderly, String rating) {
+    private RequestMyTravels(String price, String logo, String start_date, String return_date, String id, String name, String tel, String duration, String start_airport, String return_airport, String start_hour, String return_hour, String toCountry, String banner, String classe, String nbChildren, String nbAdults, String nbPassengers, String nbEderly, String rating) {
         this.price = price;
         this.logo = logo;
         this.start_date = start_date;
@@ -62,7 +62,7 @@ public class RequestMyTravels {
         this.return_airport = return_airport;
         this.start_hour = start_hour;
         this.return_hour = return_hour;
-        this.to_country = to_country;
+        this.toCountry = toCountry;
         this.banner = banner;
         this.classe = classe;
         this.nbChildren = nbChildren;
@@ -180,7 +180,7 @@ public class RequestMyTravels {
                                                         setDuration(value);
                                                     }else if (Objects.equals(values.getKey(), "ToCountry")) {
                                                         value = String.valueOf(values.getValue());
-                                                        setTo_country(value);
+                                                        setToCountry(value);
                                                     }
 
                                                 }
@@ -188,7 +188,7 @@ public class RequestMyTravels {
                                                         getStart_date(), getReturn_date(), getId(),
                                                         getName(), getTel(), getDuration(),
                                                         getStart_airport(), getReturn_airport(),
-                                                        getStart_hour(), getReturn_hour(),getTo_country(),
+                                                        getStart_hour(), getReturn_hour(), getToCountry(),
                                                         getBanner(), getClasse(), getNbChildren(),
                                                         getNbAdults(), getNbPassengers(), getNbEderly(), getRating()));
                                             }
@@ -292,11 +292,11 @@ public class RequestMyTravels {
         this.rating = rating;
     }
 
-    public String getTo_country() {
-        return to_country;
+    public String getToCountry() {
+        return toCountry;
     }
 
-    private void setTo_country(String to_country) {
-        this.to_country = to_country;
+    private void setToCountry(String toCountry) {
+        this.toCountry = toCountry;
     }
 }
